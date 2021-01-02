@@ -120,10 +120,12 @@ class _DataPageState extends State<DataPage> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () async {
-                    // add loading = true
+                    //adding date and time
+                    //
+                    DateTime date = DateTime.now();
                     setState(() => loading = true);
                     await DatabaseService()
-                        .updateImd(area, equipment, activity, optional);
+                        .updateImd(area, equipment, activity, optional, date);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Home()));
                   },
