@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "502356623239",
+    "project_id": "imd-cgpl-294f7",
+    "storage_bucket": "imd-cgpl-294f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502356623239:android:ad66e376360724a1df9d22",
+        "android_client_info": {
+          "package_name": "com.cgpl.imd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502356623239-llej26cjngooesdqq4jqpe9hsncsr7f4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnZJ3Psywr7i9jE5OXyoN9VnxoFqktLbg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502356623239-llej26cjngooesdqq4jqpe9hsncsr7f4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
