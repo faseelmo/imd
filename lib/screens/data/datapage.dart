@@ -35,102 +35,131 @@ class _DataPageState extends State<DataPage> {
               elevation: 5.0,
               actions: <Widget>[],
             ),
-            body: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-              child: Column(children: <Widget>[
-                SizedBox(height: 20.0),
-                TextFormField(
-                  onChanged: (val) {
-                    setState(() => area = val);
-                  },
-                  decoration: InputDecoration(
-                    hintText: 'Area',
-                    fillColor: Colors.grey[50],
-                    filled: true,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.grey[50], width: 2.0),
+            body: Form(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                child: Column(children: <Widget>[
+                  SizedBox(height: 20.0),
+                  DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      hintText: 'Area',
+                      fillColor: Colors.grey[50],
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.grey[50], width: 2.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blueGrey[300])),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blueGrey[300])),
+                    items: <String>[
+                      'Boiler 1',
+                      'Boiler 2',
+                      'Feed Cycle',
+                      'BOP',
+                      'CHP',
+                      'Turbine',
+                      'DCS',
+                      'IT'
+                    ].map((String value) {
+                      return new DropdownMenuItem<String>(
+                        value: value,
+                        child: new Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (val) {
+                      setState(() => area = val);
+                    },
                   ),
-                ),
-                SizedBox(height: 10.0),
-                TextFormField(
-                  onChanged: (val) {
-                    setState(() => equipment = val);
-                  },
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  decoration: InputDecoration(
-                    hintText: 'Equipment',
-                    fillColor: Colors.grey[50],
-                    filled: true,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.grey[50], width: 2.0),
+                  SizedBox(height: 10.0),
+                  TextFormField(
+                    onChanged: (val) {
+                      setState(() => equipment = val);
+                    },
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    decoration: InputDecoration(
+                      hintText: 'Equipment',
+                      fillColor: Colors.grey[50],
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.grey[50], width: 2.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blueGrey[300])),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blueGrey[300])),
                   ),
-                ),
-                SizedBox(height: 10.0),
-                TextFormField(
-                  onChanged: (val) {
-                    setState(() => activity = val);
-                  },
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  decoration: InputDecoration(
-                    hintText: 'Activity',
-                    fillColor: Colors.grey[50],
-                    filled: true,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.grey[50], width: 2.0),
+                  SizedBox(height: 10.0),
+                  DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      hintText: 'Activity',
+                      fillColor: Colors.grey[50],
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.grey[50], width: 2.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blueGrey[300])),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blueGrey[300])),
+                    items: <String>[
+                      'Simulation',
+                      'Replacement',
+                      'Set Point Change',
+                      'PM',
+                      'Calibration',
+                      'Improvement',
+                      'New Installation'
+                    ].map((String value) {
+                      return new DropdownMenuItem<String>(
+                        value: value,
+                        child: new Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (val) {
+                      setState(() => activity = val);
+                    },
                   ),
-                ),
-                SizedBox(height: 10.0),
-                TextFormField(
-                  onChanged: (val) {
-                    setState(() => optional = val);
-                  },
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  decoration: InputDecoration(
-                    hintText: 'Optional',
-                    fillColor: Colors.grey[50],
-                    filled: true,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.grey[50], width: 2.0),
+                  SizedBox(height: 10.0),
+                  TextFormField(
+                    onChanged: (val) {
+                      setState(() => optional = val);
+                    },
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    decoration: InputDecoration(
+                      hintText: 'Optional',
+                      fillColor: Colors.grey[50],
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.grey[50], width: 2.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blueGrey[300])),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blueGrey[300])),
                   ),
-                ),
-                SizedBox(height: 20.0),
-                RaisedButton(
-                  color: Colors.blueGrey[600],
-                  child: Text(
-                    "Submit",
-                    style: TextStyle(color: Colors.white),
+                  SizedBox(height: 20.0),
+                  RaisedButton(
+                    color: Colors.blueGrey[600],
+                    child: Text(
+                      "Submit",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () async {
+                      //adding date and time
+                      //
+                      DateTime date = DateTime.now();
+                      setState(() => loading = true);
+                      await DatabaseService()
+                          .updateImd(area, equipment, activity, optional, date);
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Home()));
+                    },
                   ),
-                  onPressed: () async {
-                    //adding date and time
-                    //
-                    DateTime date = DateTime.now();
-                    setState(() => loading = true);
-                    await DatabaseService()
-                        .updateImd(area, equipment, activity, optional, date);
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Home()));
-                  },
-                ),
-              ]),
+                ]),
+              ),
             ));
   }
 }

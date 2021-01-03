@@ -34,6 +34,8 @@ class DatabaseService {
   // get imd stream
 
   Stream<List<Imd>> get imd {
+    // orderBy is here
+
     return databaseReference
         .collection("imd")
         .orderBy('date', descending: true)
