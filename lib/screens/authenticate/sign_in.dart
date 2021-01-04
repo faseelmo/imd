@@ -22,6 +22,7 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
+            resizeToAvoidBottomPadding: false,
             backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -34,7 +35,14 @@ class _SignInState extends State<SignIn> {
                 key: _formKey,
                 child: Column(
                   children: <Widget>[
-                    SizedBox(height: 20.0),
+                    SizedBox(
+                      height: 200.0,
+                      child: Image.asset(
+                        'assets/logo.png',
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    SizedBox(height: 30.0),
                     TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Email',
@@ -76,7 +84,7 @@ class _SignInState extends State<SignIn> {
                         setState(() => password = val);
                       },
                     ),
-                    SizedBox(height: 20.0),
+                    SizedBox(height: 40.0),
                     RaisedButton(
                       color: Colors.blueGrey[600],
                       child: Text(
