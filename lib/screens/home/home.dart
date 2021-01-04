@@ -37,6 +37,22 @@ class Home extends StatelessWidget {
           child: Icon(Icons.add),
           backgroundColor: Colors.blueGrey[300],
         ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            (BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined),
+              label: 'Home',
+            )),
+            (BottomNavigationBarItem(
+              icon: Icon(Icons.analytics_outlined),
+              label: 'Analytics',
+            )),
+            (BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle_outlined),
+              label: 'Account',
+            ))
+          ],
+        ),
       ),
     );
   }
