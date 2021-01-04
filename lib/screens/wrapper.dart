@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:imd/screens/authenticate/authenticate.dart';
 import 'package:imd/models/user.dart';
-import 'package:imd/screens/home/home.dart';
+import 'package:imd/screens/bottom%20tabs/tabspage.dart';
 import 'package:provider/provider.dart';
 
 class Wrapper extends StatelessWidget {
@@ -14,7 +14,7 @@ class Wrapper extends StatelessWidget {
     if (user == null) {
       return Authenticate();
     } else {
-      return Home();
+      return Tabs();
     }
   }
 }

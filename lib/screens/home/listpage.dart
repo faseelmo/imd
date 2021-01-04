@@ -14,11 +14,17 @@ class _DataListState extends State<DataList> {
     final imd = Provider.of<List<Imd>>(context);
     //print(imd.documents);
 
-    return ListView.builder(
-      itemCount: imd.length,
-      itemBuilder: (context, index) {
-        return DataTile(data: imd[index]);
-      },
+    return Scaffold(
+      body: Center(
+        child: imd == null
+            ? Container()
+            : ListView.builder(
+                itemCount: imd.length,
+                itemBuilder: (context, index) {
+                  return DataTile(data: imd[index]);
+                },
+              ),
+      ),
     );
   }
 }

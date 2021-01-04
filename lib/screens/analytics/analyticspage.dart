@@ -9,10 +9,12 @@ class Analytics extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Search"),
+        title: Text("Analytics"),
+        backgroundColor: Colors.white,
+        elevation: 0.0,
       ),
       body: Center(
-        child: Text("Hello, Search!"),
+        child: Text("Under Construction"),
       ),
     );
   }
