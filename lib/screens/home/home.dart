@@ -11,10 +11,10 @@ class Home extends StatelessWidget {
     return StreamProvider<List<Imd>>.value(
       value: DatabaseService().imd,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[50],
         appBar: AppBar(
           title: Text(''),
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.grey[50],
           elevation: 0.0,
         ),
         body: DataList(),

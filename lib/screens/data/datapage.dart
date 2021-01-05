@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // ignore: unused_import
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:imd/screens/home/home.dart';
+import 'package:imd/screens/bottom%20tabs/tabspage.dart';
 import 'package:imd/sevices/database.dart';
 import 'package:imd/shared/loading.dart';
 
@@ -155,7 +155,7 @@ class _DataPageState extends State<DataPage> {
                       await DatabaseService()
                           .updateImd(area, equipment, activity, optional, date);
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Home()));
+                          MaterialPageRoute(builder: (context) => Tabs()));
                     },
                   ),
                 ]),

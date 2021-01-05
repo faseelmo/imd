@@ -10,7 +10,7 @@ class DataTile extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
       child: Card(
-          margin: EdgeInsets.fromLTRB(20.0, 10, 20.0, 10),
+          margin: EdgeInsets.fromLTRB(20.0, 0, 20.0, 5),
           child: Column(
             children: [
               ListTile(
@@ -24,10 +24,10 @@ class DataTile extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding: const EdgeInsets.all(0.0),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                   child: data.optional != ''
                       ? Padding(
-                          padding: const EdgeInsets.fromLTRB(16.0, 10, 12, 10),
+                          padding: const EdgeInsets.fromLTRB(16.0, 4, 12, 5),
                           child: Text('Description: ${data.optional}',
                               textAlign: TextAlign.left,
                               style: TextStyle(
