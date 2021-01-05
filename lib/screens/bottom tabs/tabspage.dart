@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:imd/screens/analytics/analyticspage.dart';
 import 'package:imd/screens/home/home.dart';
 import 'package:imd/screens/settings/account.dart';
-
 import 'package:imd/sevices/database.dart';
 import 'package:provider/provider.dart';
 import 'package:imd/models/imd.dart';

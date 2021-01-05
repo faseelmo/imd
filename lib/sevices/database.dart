@@ -8,10 +8,11 @@ class DatabaseService {
 
   final databaseReference = Firestore.instance;
 
-  Future updateImd(String area, String equipment, String activity,
+  Future updateImd(String area, String group, String equipment, String activity,
       String optional, DateTime date) async {
     return await databaseReference.collection("imd").add({
       'area': area,
+      'group': group,
       'equipment': equipment,
       'activity': activity,
       'optional': optional,
@@ -23,7 +24,8 @@ class DatabaseService {
   List<Imd> _imdListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return Imd(
-        area: doc.data['area'] ?? '0',
+        area: doc.data['area'] ?? '',
+        group: doc.data['group'] ?? '',
         equipment: doc.data['equipment'] ?? '',
         activity: doc.data['activity'] ?? '',
         optional: doc.data['optional'] ?? '',

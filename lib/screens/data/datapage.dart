@@ -14,6 +14,7 @@ class _DataPageState extends State<DataPage> {
   bool loading = false;
 
   String area = '';
+  String group = '';
   String equipment = '';
   String activity = '';
   String optional = '';
@@ -53,14 +54,42 @@ class _DataPageState extends State<DataPage> {
                           borderSide: BorderSide(color: Colors.blueGrey[300])),
                     ),
                     items: <String>[
-                      'Boiler 1',
-                      'Boiler 2',
+                      'Unit 10',
+                      'Unit 20',
+                      'Unit 30',
+                      'Unit 40',
+                      'Unit 50',
+                      'BOP',
+                      'CHP',
+                    ].map((String value) {
+                      return new DropdownMenuItem<String>(
+                        value: value,
+                        child: new Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (val) {
+                      setState(() => area = val);
+                    },
+                  ),
+                  SizedBox(height: 20.0),
+                  DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      hintText: 'Group',
+                      fillColor: Colors.grey[50],
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.grey[50], width: 2.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blueGrey[300])),
+                    ),
+                    items: <String>[
+                      'Boiler',
                       'Feed Cycle',
                       'BOP',
                       'CHP',
-                      'Turbine',
-                      'DCS',
-                      'IT'
+                      'DCS/Turbine/IT',
                     ].map((String value) {
                       return new DropdownMenuItem<String>(
                         value: value,
@@ -110,7 +139,8 @@ class _DataPageState extends State<DataPage> {
                       'PM',
                       'Calibration',
                       'Improvement',
-                      'New Installation'
+                      'New Installation',
+                      'Others'
                     ].map((String value) {
                       return new DropdownMenuItem<String>(
                         value: value,
@@ -129,7 +159,7 @@ class _DataPageState extends State<DataPage> {
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     decoration: InputDecoration(
-                      hintText: 'Optional',
+                      hintText: 'Description',
                       fillColor: Colors.grey[50],
                       filled: true,
                       enabledBorder: OutlineInputBorder(
@@ -152,8 +182,8 @@ class _DataPageState extends State<DataPage> {
                       //
                       DateTime date = DateTime.now();
                       setState(() => loading = true);
-                      await DatabaseService()
-                          .updateImd(area, equipment, activity, optional, date);
+                      await DatabaseService().updateImd(
+                          area, group, equipment, activity, optional, date);
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Tabs()));
                     },
