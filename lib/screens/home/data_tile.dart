@@ -18,8 +18,8 @@ class DataTile extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: Text(data.activity),
                 ),
-                subtitle:
-                    Text("Equipment: ${data.equipment}\nUnit: ${data.area}"),
+                subtitle: Text(
+                    "Equipment: ${data.equipment}\nArea: ${data.area} \nGroup: ${data.group}"),
               ),
               Align(
                 alignment: Alignment.centerLeft,

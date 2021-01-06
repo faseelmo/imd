@@ -97,7 +97,7 @@ class _DataPageState extends State<DataPage> {
                       );
                     }).toList(),
                     onChanged: (val) {
-                      setState(() => area = val);
+                      setState(() => group = val);
                     },
                   ),
                   SizedBox(height: 10.0),

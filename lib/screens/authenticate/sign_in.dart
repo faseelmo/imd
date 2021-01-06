@@ -30,7 +30,7 @@ class _SignInState extends State<SignIn> {
               title: Text("Sign in to IMD portal"),
             ),
             body: Container(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+              padding: EdgeInsets.symmetric(vertical: 0, horizontal: 50),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -42,7 +42,7 @@ class _SignInState extends State<SignIn> {
                         fit: BoxFit.fitWidth,
                       ),
                     ),
-                    SizedBox(height: 30.0),
+                    SizedBox(height: 00.0),
                     TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Email',
