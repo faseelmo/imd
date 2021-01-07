@@ -40,7 +40,11 @@ class _AnalyticsState extends State<Analytics> {
                   SizedBox(height: 20.0),
                   DropdownButtonFormField<String>(
                     decoration: InputDecoration(
-                      hintText: 'Area',
+                      labelText: 'Area',
+                      labelStyle: TextStyle(
+                        color: Colors.blueGrey[900],
+                        //fontWeight: FontWeight.bold
+                      ),
                       fillColor: Colors.grey[50],
                       filled: true,
                       enabledBorder: OutlineInputBorder(
@@ -51,6 +55,7 @@ class _AnalyticsState extends State<Analytics> {
                           borderSide: BorderSide(color: Colors.blueGrey[300])),
                     ),
                     items: <String>[
+                      'All',
                       'Unit 10',
                       'Unit 20',
                       'Unit 30',
@@ -72,7 +77,11 @@ class _AnalyticsState extends State<Analytics> {
                   SizedBox(height: 20.0),
                   DropdownButtonFormField<String>(
                     decoration: InputDecoration(
-                      hintText: 'Group',
+                      labelText: 'Group',
+                      labelStyle: TextStyle(
+                        color: Colors.blueGrey[900],
+                        //fontWeight: FontWeight.bold
+                      ),
                       fillColor: Colors.grey[50],
                       filled: true,
                       enabledBorder: OutlineInputBorder(
@@ -83,6 +92,7 @@ class _AnalyticsState extends State<Analytics> {
                           borderSide: BorderSide(color: Colors.blueGrey[300])),
                     ),
                     items: <String>[
+                      'All',
                       'Boiler',
                       'Feed Cycle',
                       'BOP',
@@ -101,7 +111,11 @@ class _AnalyticsState extends State<Analytics> {
                   SizedBox(height: 10.0),
                   DropdownButtonFormField<String>(
                     decoration: InputDecoration(
-                      hintText: 'Activity',
+                      labelText: 'Activity',
+                      labelStyle: TextStyle(
+                        color: Colors.blueGrey[900],
+                        //fontWeight: FontWeight.bold
+                      ),
                       fillColor: Colors.grey[50],
                       filled: true,
                       enabledBorder: OutlineInputBorder(
@@ -112,6 +126,7 @@ class _AnalyticsState extends State<Analytics> {
                           borderSide: BorderSide(color: Colors.blueGrey[300])),
                     ),
                     items: <String>[
+                      'All',
                       'Simulation',
                       'Replacement',
                       'Set Point Change',

@@ -15,7 +15,10 @@ class _AnalyticsListPageState extends State<AnalyticsListPage> {
     return Scaffold(
       body: Center(
         child: imd == null
-            ? Container()
+            ? Container(
+                child: Text('No Records founds :(',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+              )
             : ListView.builder(
                 itemCount: imd.length,
                 itemBuilder: (context, index) {

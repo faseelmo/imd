@@ -35,6 +35,16 @@ class AnalyticServices {
       global.activity = null;
     }
 
+    if (global.area == 'All') {
+      global.area = null;
+    }
+    if (global.group == 'All') {
+      global.group = null;
+    }
+    if (global.activity == 'All') {
+      global.activity = null;
+    }
+
     return databaseReference
         .collection("imd") // I need the variable from the dropdown menu
         .where('area', isEqualTo: global.area)

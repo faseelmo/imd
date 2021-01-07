@@ -9,14 +9,16 @@ class Account extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(''),
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.grey[50],
           elevation: 0.0,
         ),
-        body: FlatButton.icon(
-            onPressed: () async {
-              await _auth.signOut();
-            },
-            icon: Icon(Icons.person),
-            label: Text('logout')));
+        body: Container(
+          child: FlatButton.icon(
+              onPressed: () async {
+                await _auth.signOut();
+              },
+              icon: Icon(Icons.person),
+              label: Text('logout')),
+        ));
   }
 }

@@ -43,7 +43,11 @@ class _DataPageState extends State<DataPage> {
                   SizedBox(height: 20.0),
                   DropdownButtonFormField<String>(
                     decoration: InputDecoration(
-                      hintText: 'Area',
+                      labelText: 'Area',
+                      labelStyle: TextStyle(
+                        color: Colors.blueGrey[900],
+                        //fontWeight: FontWeight.bold
+                      ),
                       fillColor: Colors.grey[50],
                       filled: true,
                       enabledBorder: OutlineInputBorder(
@@ -74,7 +78,11 @@ class _DataPageState extends State<DataPage> {
                   SizedBox(height: 20.0),
                   DropdownButtonFormField<String>(
                     decoration: InputDecoration(
-                      hintText: 'Group',
+                      labelText: 'Group',
+                      labelStyle: TextStyle(
+                        color: Colors.blueGrey[900],
+                        //fontWeight: FontWeight.bold
+                      ),
                       fillColor: Colors.grey[50],
                       filled: true,
                       enabledBorder: OutlineInputBorder(
@@ -108,7 +116,11 @@ class _DataPageState extends State<DataPage> {
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     decoration: InputDecoration(
-                      hintText: 'Equipment',
+                      labelText: 'Equipment',
+                      labelStyle: TextStyle(
+                        color: Colors.blueGrey[900],
+                        //fontWeight: FontWeight.bold
+                      ),
                       fillColor: Colors.grey[50],
                       filled: true,
                       enabledBorder: OutlineInputBorder(
@@ -122,7 +134,11 @@ class _DataPageState extends State<DataPage> {
                   SizedBox(height: 10.0),
                   DropdownButtonFormField<String>(
                     decoration: InputDecoration(
-                      hintText: 'Activity',
+                      labelText: 'Activity',
+                      labelStyle: TextStyle(
+                        color: Colors.blueGrey[900],
+                        //fontWeight: FontWeight.bold
+                      ),
                       fillColor: Colors.grey[50],
                       filled: true,
                       enabledBorder: OutlineInputBorder(
@@ -159,7 +175,11 @@ class _DataPageState extends State<DataPage> {
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     decoration: InputDecoration(
-                      hintText: 'Description',
+                      labelText: 'Description',
+                      labelStyle: TextStyle(
+                        color: Colors.blueGrey[900],
+                        //fontWeight: FontWeight.bold
+                      ),
                       fillColor: Colors.grey[50],
                       filled: true,
                       enabledBorder: OutlineInputBorder(
