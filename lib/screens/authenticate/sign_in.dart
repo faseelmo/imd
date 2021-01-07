@@ -27,7 +27,6 @@ class _SignInState extends State<SignIn> {
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0.0,
-              title: Text("Sign in to IMD portal"),
             ),
             body: Container(
               padding: EdgeInsets.symmetric(vertical: 0, horizontal: 50),
@@ -42,7 +41,7 @@ class _SignInState extends State<SignIn> {
                         fit: BoxFit.fitWidth,
                       ),
                     ),
-                    SizedBox(height: 00.0),
+                    SizedBox(height: 10.0),
                     TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Email',
