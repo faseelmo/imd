@@ -48,7 +48,7 @@ class AnalyticServices {
     return databaseReference
         .collection("imd") // I need the variable from the dropdown menu
         .where('area', isEqualTo: global.area)
-        .where('grouo', isEqualTo: global.group)
+        .where('group', isEqualTo: global.group)
         .where('activity', isEqualTo: global.activity)
         .orderBy('date', descending: true)
         .snapshots()

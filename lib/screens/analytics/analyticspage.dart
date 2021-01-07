@@ -156,6 +156,7 @@ class _AnalyticsState extends State<Analytics> {
                         global.area = area;
                         global.group = group;
                         global.activity = activity;
+                        print(global.group);
 
                         Navigator.push(
                             context,
