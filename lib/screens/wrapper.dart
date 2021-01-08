@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:imd/screens/authenticate/authenticate.dart';
 import 'package:imd/models/user.dart';
-import 'package:imd/screens/bottom%20tabs/tabspage.dart';
 import 'package:provider/provider.dart';
+
+import 'bottom tabs/tabspage.dart';
 
 class Wrapper extends StatelessWidget {
   @override

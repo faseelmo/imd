@@ -3,12 +3,12 @@ import 'package:provider/provider.dart';
 import 'package:imd/models/imd.dart';
 import 'package:imd/screens/home/data_tile.dart';
 
-class AnalyticsListPage extends StatefulWidget {
+class SearchListPage extends StatefulWidget {
   @override
-  _AnalyticsListPageState createState() => _AnalyticsListPageState();
+  _SearchListPageState createState() => _SearchListPageState();
 }
 
-class _AnalyticsListPageState extends State<AnalyticsListPage> {
+class _SearchListPageState extends State<SearchListPage> {
   @override
   Widget build(BuildContext context) {
     final imd = Provider.of<List<Imd>>(context);

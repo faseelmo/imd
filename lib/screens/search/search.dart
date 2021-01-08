@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'analyticshome.dart';
+import 'searchHome.dart';
 import 'package:imd/global.dart' as global;
 
-class Analytics extends StatefulWidget {
+class Search extends StatefulWidget {
   @override
-  _AnalyticsState createState() => _AnalyticsState();
+  _SearchState createState() => _SearchState();
 }
 
-class _AnalyticsState extends State<Analytics> {
+class _SearchState extends State<Search> {
   String area = '';
   String group = '';
   String equipment = '';
@@ -37,6 +37,7 @@ class _AnalyticsState extends State<Analytics> {
               child: SingleChildScrollView(
                 padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                 child: Column(children: <Widget>[
+                  SizedBox(height: 20),
                   SizedBox(height: 20.0),
                   DropdownButtonFormField<String>(
                     decoration: InputDecoration(
@@ -161,7 +162,7 @@ class _AnalyticsState extends State<Analytics> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => AnalyticsHome()));
+                                builder: (context) => SearchHome()));
                       }
                       //adding date and time
 

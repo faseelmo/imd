@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:imd/screens/analytics/analyticspage.dart';
 import 'package:imd/screens/home/home.dart';
 import 'package:imd/screens/settings/account.dart';
 import 'package:imd/sevices/database.dart';
@@ -15,7 +14,6 @@ class _TabsState extends State<Tabs> {
   int _currentIndex = 0;
   final tabs = [
     Center(child: Home()),
-    Center(child: Analytics()),
     Center(child: Account()),
   ];
   @override
@@ -30,10 +28,6 @@ class _TabsState extends State<Tabs> {
             (BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
               label: 'Home',
-            )),
-            (BottomNavigationBarItem(
-              icon: Icon(Icons.analytics_outlined),
-              label: 'Analytics',
             )),
             (BottomNavigationBarItem(
               icon: Icon(Icons.account_circle_outlined),

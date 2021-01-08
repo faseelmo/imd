@@ -13,12 +13,13 @@ class Account extends StatelessWidget {
           elevation: 0.0,
         ),
         body: Container(
+            child: Center(
           child: FlatButton.icon(
               onPressed: () async {
                 await _auth.signOut();
               },
               icon: Icon(Icons.person),
               label: Text('logout')),
-        ));
+        )));
   }
 }

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:imd/screens/data/datapage.dart';
-import 'package:imd/screens/analytics/analyticsdata.dart';
+import 'package:imd/screens/search/SearchService.dart';
 import 'package:provider/provider.dart';
 import 'package:imd/models/imd.dart';
-import 'listanalyticspage.dart';
+import 'searchListPage.dart';
 
-class AnalyticsHome extends StatelessWidget {
+class SearchHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Imd>>.value(
-      value: AnalyticServices().imd,
+      value: SearchServices().imd,
       child: Scaffold(
         backgroundColor: Colors.grey[50],
         appBar: AppBar(
@@ -17,7 +17,7 @@ class AnalyticsHome extends StatelessWidget {
           backgroundColor: Colors.grey[50],
           elevation: 0.0,
         ),
-        body: AnalyticsListPage(),
+        body: SearchListPage(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(

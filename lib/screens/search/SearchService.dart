@@ -4,9 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:imd/models/imd.dart';
 import 'package:imd/global.dart' as global;
 
-class AnalyticServices {
+class SearchServices {
   final Imd data;
-  AnalyticServices({this.data});
+  SearchServices({this.data});
 
   final databaseReference = Firestore.instance;
 
