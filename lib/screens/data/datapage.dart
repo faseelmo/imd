@@ -110,6 +110,7 @@ class _DataPageState extends State<DataPage> {
                   ),
                   SizedBox(height: 10.0),
                   TextFormField(
+                    onTap: () {},
                     onChanged: (val) {
                       setState(() => equipment = val);
                     },

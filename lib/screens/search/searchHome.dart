@@ -18,14 +18,6 @@ class SearchHome extends StatelessWidget {
           elevation: 0.0,
         ),
         body: SearchListPage(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => DataPage()));
-          },
-          child: Icon(Icons.add),
-          backgroundColor: Colors.blueGrey[300],
-        ),
       ),
     );
   }

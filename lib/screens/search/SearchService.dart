@@ -41,15 +41,14 @@ class SearchServices {
     if (global.group == 'All') {
       global.group = null;
     }
-    if (global.activity == 'All') {
-      global.activity = null;
-    }
 
     return databaseReference
         .collection("imd") // I need the variable from the dropdown menu
         .where('area', isEqualTo: global.area)
         .where('group', isEqualTo: global.group)
         .where('activity', isEqualTo: global.activity)
+        .where('date', isGreaterThanOrEqualTo: global.fromDate)
+        .where('date', isLessThanOrEqualTo: global.toDate)
         .orderBy('date', descending: true)
         .snapshots()
         .map(_imdListFromSnapshot);
