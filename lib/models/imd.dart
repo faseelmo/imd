@@ -5,6 +5,7 @@ class Imd {
   final String activity;
   final String optional;
   final DateTime date;
+  final String url;
 
   Imd(
       {this.area,
@@ -12,5 +13,6 @@ class Imd {
       this.equipment,
       this.activity,
       this.optional,
-      this.date});
+      this.date,
+      this.url});
 }

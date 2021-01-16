@@ -25,27 +25,25 @@ class SearchServices {
       }).toList();
     }
 
-    if (global.area == '') {
+    if (global.area == '' || global.area == 'All') {
       global.area = null;
     }
-    if (global.group == '') {
+    if (global.group == '' || global.group == 'All') {
       global.group = null;
     }
-    if (global.activity == '') {
+    if (global.activity == '' || global.activity == 'All') {
       global.activity = null;
     }
 
-    if (global.area == 'All') {
-      global.area = null;
-    }
-    if (global.group == 'All') {
-      global.group = null;
+    if (global.equipment == '' || global.equipment == 'All') {
+      global.equipment = null;
     }
 
     return databaseReference
         .collection("imd") // I need the variable from the dropdown menu
         .where('area', isEqualTo: global.area)
         .where('group', isEqualTo: global.group)
+        .where('equipment', isEqualTo: global.equipment)
         .where('activity', isEqualTo: global.activity)
         .where('date', isGreaterThanOrEqualTo: global.fromDate)
         .where('date', isLessThanOrEqualTo: global.toDate)

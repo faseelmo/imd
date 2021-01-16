@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'searchHome.dart';
 import 'package:imd/global.dart' as global;
 import 'package:intl/intl.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -238,6 +239,113 @@ class _SearchState extends State<Search> {
                         //print("haha" + area_search);
                       },
                     ),
+                    SizedBox(height: 10.0),
+                    DropdownSearch<String>(
+                      dropdownSearchDecoration: InputDecoration(
+                        labelStyle: TextStyle(
+                          color: Colors.blueGrey[900],
+                          //fontWeight: FontWeight.bold
+                        ),
+                        fillColor: Colors.grey[50],
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.grey[50], width: 2.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.blueGrey[300])),
+                      ),
+                      searchBoxDecoration: InputDecoration(
+                        labelStyle: TextStyle(
+                          color: Colors.blueGrey[900],
+                          //fontWeight: FontWeight.bold
+                        ),
+                        fillColor: Colors.grey[50],
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.grey[50], width: 2.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.blueGrey[300])),
+                      ),
+                      mode: Mode.MENU,
+                      showSelectedItem: true,
+                      items: [
+                        'All',
+                        'TSI',
+                        'MSV',
+                        'CV',
+                        'ICV',
+                        'RSV',
+                        'Debris Filter',
+                        'SCS',
+                        'CWS',
+                        'TWS',
+                        'DEHC',
+                        'PLC',
+                        'LVS',
+                        'OS ES',
+                        'PI',
+                        'Panel',
+                        'FCP',
+                        'DCS IO Card',
+                        'Communication',
+                        'Network',
+                        'CCTV',
+                        'BFP',
+                        'CEP',
+                        'HPBP',
+                        'LPBP',
+                        'Vaccum Pump',
+                        'HPH',
+                        'LPH',
+                        'BMS',
+                        'Fuel Control Station',
+                        'Coal feeders',
+                        'Mill Instruments',
+                        'Water & Steam transmitters',
+                        'SWAS',
+                        'Metal Temperature',
+                        'Burner Tilt',
+                        'SH RH spray station',
+                        'Soot Blowing System',
+                        'ID',
+                        'FD',
+                        'PA',
+                        'SADC',
+                        'Air & Flue gas transmitter',
+                        'Hydrojet/Water Cannon',
+                        'AAQMS',
+                        'CEMS',
+                        'FOPH',
+                        'FWPH/SWPH',
+                        'ETP',
+                        'RO',
+                        'DM',
+                        'CPU',
+                        'ECP',
+                        'Hydrogen',
+                        'AHS',
+                        'HVAC',
+                        'FDAS',
+                        'CAS',
+                        'SCR/RCR',
+                        'TTR',
+                        'Belt Conveyor Instrumentation',
+                        'BVS',
+                        'Wireless System',
+                        'FDAS',
+                      ],
+                      showSearchBox: true,
+                      label: "Equipment",
+                      hint: "Search",
+                      onChanged: (val) {
+                        setState(() => equipment = val);
+                      },
+                    ),
                     SizedBox(height: 20.0),
                     DropdownButtonFormField<String>(
                       decoration: InputDecoration(
@@ -324,6 +432,7 @@ class _SearchState extends State<Search> {
                           global.activity = activity;
                           global.fromDate = fromDate;
                           global.toDate = toDate;
+                          global.equipment = equipment;
 
                           //print();
 

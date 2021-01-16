@@ -37,6 +37,10 @@ dependencies:
   intl: ^0.16.1
   flutter_speed_dial: ^1.2.5
   flutter_datetime_picker: ^1.4.0
+  image_picker: ^0.6.7+21
+  firebase_storage: ^3.0.3
+  flutter_native_image: ^0.0.5
+  dropdown_search: ^0.4.8
 
 dev_dependencies:
   flutter_test:
