@@ -6,6 +6,7 @@ class Imd {
   final String optional;
   final DateTime date;
   final String url;
+  final String uemail;
 
   Imd(
       {this.area,
@@ -14,5 +15,6 @@ class Imd {
       this.activity,
       this.optional,
       this.date,
-      this.url});
+      this.url,
+      this.uemail});
 }

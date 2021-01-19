@@ -68,12 +68,10 @@ class _DataPageState extends State<DataPage> {
         .child('imageData/${Path.basename(_image.path)}');
     StorageUploadTask uploadTask = storageReference.putFile(_image);
     await uploadTask.onComplete;
-    print('LOOK HERE LOL \n File Uploaded \n ');
+
     String fileURL = await storageReference.getDownloadURL();
     setState(() {
       uploadedFileURL = fileURL;
-      print('FILE URL FROM FUCTION IS ');
-      print(uploadedFileURL);
     });
   }
 
@@ -362,10 +360,14 @@ class _DataPageState extends State<DataPage> {
                       setState(() => loading = true);
                       await uploadFile();
                       url = uploadedFileURL;
+
                       DateTime date = DateTime.now();
                       await getCurrentUser();
+
+                      print('Uemail is ');
+                      print(uemail);
                       await DatabaseService().updateImd(area, group, equipment,
-                          activity, optional, date, url);
+                          activity, optional, date, url, uemail);
 
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Tabs()));

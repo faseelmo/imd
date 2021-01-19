@@ -9,7 +9,7 @@ class DatabaseService {
   final databaseReference = Firestore.instance;
 
   Future updateImd(String area, String group, String equipment, String activity,
-      String optional, DateTime date, String url) async {
+      String optional, DateTime date, String url, String uemail) async {
     return await databaseReference.collection("imd").add({
       'area': area,
       'group': group,
@@ -18,6 +18,7 @@ class DatabaseService {
       'optional': optional,
       'date': date,
       'url': url,
+      'uemail': uemail,
     });
   }
 
@@ -31,6 +32,7 @@ class DatabaseService {
         activity: doc.data['activity'] ?? '',
         optional: doc.data['optional'] ?? '',
         url: doc.data['url'] ?? '',
+        uemail: doc.data['uemail'] ?? '',
         //date: doc.data['date'],
       );
     }).toList();
