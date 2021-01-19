@@ -9,6 +9,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
 import 'package:path/path.dart' as Path;
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DataPage extends StatefulWidget {
   @override
@@ -24,11 +25,26 @@ class _DataPageState extends State<DataPage> {
   String activity = '';
   String optional = '';
   String url = '';
+  String uemail = '';
 
   String uploadedFileURL = '';
 
   File _image;
   final picker = ImagePicker();
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future getCurrentUser() async {
+    final FirebaseUser user = await _auth.currentUser();
+    //final uid = user.uid;
+    // Similarly we can get email as well
+
+    setState(() {
+      uemail = user.email;
+    });
+
+    //print(uemail);
+  }
 
   Future getImage() async {
     final pickedFile =
@@ -53,12 +69,11 @@ class _DataPageState extends State<DataPage> {
     StorageUploadTask uploadTask = storageReference.putFile(_image);
     await uploadTask.onComplete;
     print('LOOK HERE LOL \n File Uploaded \n ');
-    storageReference.getDownloadURL().then((fileURL) {
-      setState(() {
-        uploadedFileURL = fileURL;
-        print('FILE URL FROM FUCTION IS ');
-        print(uploadedFileURL);
-      });
+    String fileURL = await storageReference.getDownloadURL();
+    setState(() {
+      uploadedFileURL = fileURL;
+      print('FILE URL FROM FUCTION IS ');
+      print(uploadedFileURL);
     });
   }
 
@@ -87,23 +102,20 @@ class _DataPageState extends State<DataPage> {
                   RaisedButton(
                       child: Text('Choose Image'),
                       onPressed: () async {
-                        setState(() => loading = true);
                         await getImage();
-                        setState(() => loading = false);
-
-                        if (_image != null) {
-                          setState(() => loading = true);
-                          await uploadFile();
-                          setState(() => loading = false);
-                        }
                       }),
 
                   //
                   //
 
                   Container(
-                    child:
-                        uploadedFileURL != '' ? Text('Image Uploaded') : null,
+                    child: _image != null
+                        ? Text('Image Selected')
+                        : Text('No Image Selected'),
+                  ),
+
+                  Container(
+                    child: Text(uemail),
                   ),
 
                   SizedBox(height: 20.0),
@@ -347,13 +359,11 @@ class _DataPageState extends State<DataPage> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () async {
-                      //adding date and time
-                      //
-                      DateTime date = DateTime.now();
                       setState(() => loading = true);
-
-                      print('uploaded File URL is ');
+                      await uploadFile();
                       url = uploadedFileURL;
+                      DateTime date = DateTime.now();
+                      await getCurrentUser();
                       await DatabaseService().updateImd(area, group, equipment,
                           activity, optional, date, url);
 
