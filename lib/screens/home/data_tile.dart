@@ -19,10 +19,21 @@ class DataTile extends StatelessWidget {
             margin: EdgeInsets.fromLTRB(20.0, 0, 20.0, 5),
             child: Column(
               children: [
-                /*Container(
-                    width: double.infinity, height: 200, color: Colors.blue),
-                    */
-
+                Container(
+                    height: 40,
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.all(10),
+                    width: double.infinity,
+                    child: Text.rich(TextSpan(children: <TextSpan>[
+                      TextSpan(
+                          text: data.uemail
+                              .substring(0, data.uemail.indexOf("@")),
+                          style: TextStyle(fontStyle: FontStyle.italic)),
+                      TextSpan(
+                          text: '',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ])),
+                    color: Colors.grey[50]),
                 Image.network(data.url, width: double.infinity),
                 ListTile(
                   title: Padding(

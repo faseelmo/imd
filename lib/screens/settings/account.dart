@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:imd/sevices/auth.dart';
+import 'package:imd/models/imd.dart';
 
 class Account extends StatelessWidget {
   final AuthService _auth = AuthService();
+  final Imd data;
+  Account({this.data});
 
   @override
   Widget build(BuildContext context) {
