@@ -19,6 +19,7 @@ class _DataListState extends State<DataList> {
         child: imd == null
             ? Container()
             : ListView.builder(
+                cacheExtent: 9999,
                 itemCount: imd.length,
                 itemBuilder: (context, index) {
                   return DataTile(data: imd[index]);

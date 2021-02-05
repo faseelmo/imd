@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:imd/models/imd.dart';
 import 'package:imd/screens/Edit/editHome.dart';
@@ -28,13 +29,22 @@ class DataTile extends StatelessWidget {
                       TextSpan(
                           text: data.uemail
                               .substring(0, data.uemail.indexOf("@")),
-                          style: TextStyle(fontStyle: FontStyle.italic)),
+                          style: TextStyle(
+                              fontStyle: FontStyle.italic,
+                              color: Colors.black54)),
                       TextSpan(
                           text: '',
                           style: TextStyle(fontWeight: FontWeight.bold)),
                     ])),
                     color: Colors.grey[50]),
-                Image.network(data.url, width: double.infinity),
+                CachedNetworkImage(
+                  imageUrl: data.url,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      CircularProgressIndicator(
+                          value: downloadProgress.progress),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
+                /*Image.network(data.url, width: double.infinity),*/
                 ListTile(
                   title: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
