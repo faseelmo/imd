@@ -358,8 +358,13 @@ class _DataPageState extends State<DataPage> {
                     ),
                     onPressed: () async {
                       setState(() => loading = true);
-                      await uploadFile();
-                      url = uploadedFileURL;
+
+                      if (_image != null) {
+                        await uploadFile();
+                        url = uploadedFileURL;
+                      }
+
+                      print("First");
 
                       DateTime date = DateTime.now();
                       await getCurrentUser();

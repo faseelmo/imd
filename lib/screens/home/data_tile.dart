@@ -21,30 +21,35 @@ class DataTile extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                    height: 40,
-                    alignment: Alignment.centerLeft,
-                    padding: const EdgeInsets.all(10),
-                    width: double.infinity,
-                    child: Text.rich(TextSpan(children: <TextSpan>[
-                      TextSpan(
-                          text: data.uemail
-                              .substring(0, data.uemail.indexOf("@")),
-                          style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              color: Colors.black54)),
-                      TextSpan(
-                          text: '',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                    ])),
-                    color: Colors.grey[50]),
-                CachedNetworkImage(
-                  imageUrl: data.url,
-                  progressIndicatorBuilder: (context, url, downloadProgress) =>
-                      CircularProgressIndicator(
-                          value: downloadProgress.progress),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  height: 40,
+                  alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.all(10),
+                  width: double.infinity,
+                  child: Text.rich(TextSpan(children: <TextSpan>[
+                    TextSpan(
+                        text:
+                            data.uemail.substring(0, data.uemail.indexOf("@")),
+                        style: TextStyle(
+                            fontStyle: FontStyle.italic,
+                            color: Colors.black54)),
+                    TextSpan(
+                        text: '',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  ])),
                 ),
-                /*Image.network(data.url, width: double.infinity),*/
+                data.url != ''
+                    ? CachedNetworkImage(
+                        imageUrl: data.url,
+                        progressIndicatorBuilder:
+                            (context, url, downloadProgress) =>
+                                CircularProgressIndicator(
+                                    value: downloadProgress.progress),
+                      )
+                    : Container(
+                        height: 1,
+                        color: Colors.blueGrey[900],
+                      ),
+                /*Image.network(data.url, width: double.infinity), */
                 ListTile(
                   title: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
