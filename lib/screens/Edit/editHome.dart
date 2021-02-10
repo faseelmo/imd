@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:imd/shared/loading.dart';
 
 class EditHome extends StatefulWidget {
