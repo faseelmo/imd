@@ -26,6 +26,10 @@ class DatabaseService {
     });
   }
 
+  Future deletePost(id) async {
+    return await collectionReference.document(id).delete();
+  }
+
   List<Imd> _imdListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return Imd(
@@ -36,6 +40,7 @@ class DatabaseService {
         optional: doc.data['optional'] ?? '',
         url: doc.data['url'] ?? '',
         uemail: doc.data['uemail'] ?? '',
+        docId: doc.data['docId'] ?? '',
       );
     }).toList();
   }

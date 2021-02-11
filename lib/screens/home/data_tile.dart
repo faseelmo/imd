@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:imd/models/imd.dart';
-import 'package:imd/screens/Edit/editHome.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:imd/sevices/database.dart';
 
 class DataTile extends StatelessWidget {
   final Imd data;
@@ -16,8 +16,38 @@ class DataTile extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
       child: GestureDetector(
         onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => EditHome()));
+          return showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Delete'),
+                  content: SingleChildScrollView(
+                    child: ListBody(
+                      children: <Widget>[
+                        Text('Would you like to delete this post?'),
+                      ],
+                    ),
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      child: Text('Yes'),
+                      onPressed: () async {
+                        await DatabaseService().deletePost(data.docId);
+
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    TextButton(
+                      child: Text('No'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                );
+              });
+          /*Navigator.push(
+              context, MaterialPageRoute(builder: (context) => EditHome()));*/
         },
         child: Card(
             margin: EdgeInsets.fromLTRB(20.0, 0, 20.0, 5),
@@ -59,7 +89,7 @@ class DataTile extends StatelessWidget {
                     child: Text(data.activity),
                   ),
                   subtitle: Text(
-                      "Equipment: ${data.equipment}\nArea: ${data.area} \nGroup: ${data.group}"),
+                      "Equipment: ${data.equipment}\nArea: ${data.area} \nGroup: ${data.group}  }"),
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
