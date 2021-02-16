@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:imd/sevices/auth.dart';
 import 'package:imd/shared/loading.dart';
+import 'package:imd/sevices/database.dart';
+import 'package:imd/global.dart' as global;
 
 class SignIn extends StatefulWidget {
   @override
@@ -95,11 +97,18 @@ class _SignInState extends State<SignIn> {
                           setState(() => loading = true);
                           dynamic result = await _auth
                               .signInWithEmailAndPassword(email, password);
+
                           if (result == null) {
                             setState(() {
                               error = 'wrong credentials';
                               loading = false;
                             });
+                          } else {
+                            String email =
+                                await DatabaseService().getCurrentUser();
+
+                            global.uemail = email;
+                            print("GLOBAL UEMAIL IS" + global.uemail);
                           }
                         }
                       },

@@ -9,7 +9,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
 import 'package:path/path.dart' as Path;
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:intl/intl.dart';
 
 class DataPage extends StatefulWidget {
   @override
@@ -26,25 +26,33 @@ class _DataPageState extends State<DataPage> {
   String optional = '';
   String url = '';
   String uemail = '';
+  String date = '';
 
   String uploadedFileURL = '';
 
   File _image;
   final picker = ImagePicker();
 
+  Future currentUser() async {
+    uemail = await DatabaseService().getCurrentUser();
+  }
+
+  /*
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+ 
   Future getCurrentUser() async {
     final FirebaseUser user = await _auth.currentUser();
     //final uid = user.uid;
     // Similarly we can get email as well
 
     setState(() {
-      uemail = user.email;
+      /*uemail = user.email;*/
     });
 
     //print(uemail);
   }
+  */
 
   Future getImage() async {
     final pickedFile =
@@ -366,13 +374,17 @@ class _DataPageState extends State<DataPage> {
 
                       print("First");
 
-                      DateTime date = DateTime.now();
-                      await getCurrentUser();
+                      DateTime osdate = DateTime.now();
+                      date = DateFormat('dd-MM-yyyy HH:mm').format(osdate);
+
+                      await currentUser();
+                      print("After calling the function" + uemail);
+                      /*await getCurrentUser();*/
 
                       print('Uemail is ');
                       print(uemail);
                       await DatabaseService().updateImd(area, group, equipment,
-                          activity, optional, date, url, uemail);
+                          activity, optional, osdate, url, uemail, date);
 
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Tabs()));

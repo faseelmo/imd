@@ -6,3 +6,4 @@ String activity = '';
 DateTime fromDate;
 DateTime toDate;
 String equipment = '';
+String uemail = '';
