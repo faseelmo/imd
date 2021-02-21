@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:imd/models/imd.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:imd/screens/settings/accountservice.dart';
-import 'package:imd/sevices/database.dart';
 import 'package:imd/global.dart' as global;
 
 // ignore: must_be_immutable
-class DataTile extends StatelessWidget {
+class Accountdatatile extends StatelessWidget {
   final Imd data;
-  DataTile({this.data});
+  Accountdatatile({this.data});
 
   String uemail = "";
 
@@ -60,7 +59,7 @@ class DataTile extends StatelessWidget {
                           }
 
                           if (data.docId != "") {
-                            await DatabaseService().deletePost(data.docId);
+                            await AccountServices().deletePost(data.docId);
                           }
 
                           Navigator.of(context).pop();
