@@ -1,15 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:imd/models/imd.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:imd/screens/settings/accountservice.dart';
-import 'package:imd/sevices/database.dart';
+import 'package:imd/screens/Edit/editHome.dart';
 import 'package:imd/global.dart' as global;
 
 // ignore: must_be_immutable
 class DataTile extends StatelessWidget {
   final Imd data;
+
   DataTile({this.data});
 
   String uemail = "";
@@ -32,76 +31,8 @@ class DataTile extends StatelessWidget {
         onTap: () async {
           /*This can be deleted in future I think */
 
-          if (global.uemail == data.uemail) {
-            return showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Text('Delete'),
-                    content: SingleChildScrollView(
-                      child: ListBody(
-                        children: <Widget>[
-                          Text('Would you like to delete this post?'),
-                        ],
-                      ),
-                    ),
-                    actions: <Widget>[
-                      TextButton(
-                        child: Text('Yes'),
-                        onPressed: () async {
-                          if (data.url != "") {
-                            print("DATA.URL HERE LOOK " + data.url);
-                            FirebaseStorage.instance
-                                .getReferenceFromUrl(data.url)
-                                .then(
-                                  (reference) => reference.delete(),
-                                )
-                                .catchError((e) => print(e));
-                          }
-
-                          if (data.docId != "") {
-                            await DatabaseService().deletePost(data.docId);
-                          }
-
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      TextButton(
-                        child: Text('No'),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ],
-                  );
-                });
-          } else {
-            return showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Text('Alert'),
-                    content: SingleChildScrollView(
-                      child: ListBody(
-                        children: <Widget>[
-                          Text('Only OP can delete content'),
-                        ],
-                      ),
-                    ),
-                    actions: <Widget>[
-                      TextButton(
-                        child: Text('Cancel'),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ],
-                  );
-                });
-          }
-
-          /*Navigator.push(
-              context, MaterialPageRoute(builder: (context) => EditHome()));*/
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => EditHome(postid: data)));
         },
         child: Card(
             margin: EdgeInsets.fromLTRB(20.0, 0, 20.0, 5),
