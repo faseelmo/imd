@@ -5,6 +5,7 @@ import 'package:imd/sevices/database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:imd/models/imd.dart';
 import 'package:imd/global.dart' as global;
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EditHome extends StatefulWidget {
   final Imd postid;
@@ -17,11 +18,23 @@ class EditHome extends StatefulWidget {
 class _EditHomeState extends State<EditHome> {
   bool loading = false;
 
-  String area = '';
-  String group = '';
-  String equipment = '';
-  String activity = '';
-  String optional = '';
+  String comment = '';
+
+  Future updateComment(String comment, DateTime date, String uemail) async {
+    final databaseReference = Firestore.instance;
+
+    return await databaseReference
+        .collection('imd')
+        .document(widget.postid.docId)
+        .collection('comments')
+        .document()
+        .setData({
+      'comment': comment,
+      'uemail': uemail,
+      'date': date,
+      /* 'docId': document Id here*/
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -139,18 +152,31 @@ class _EditHomeState extends State<EditHome> {
               child: Container(
                 margin: EdgeInsets.fromLTRB(5, 0, 0, 5),
                 child: TextField(
+                  onChanged: (val) {
+                    setState(() => comment = val);
+                    print("comment is " + comment);
+                  },
                   cursorColor: Theme.of(context).cursorColor,
                   obscureText: false,
                   decoration: InputDecoration(
-                      enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Colors.red,
-                      )),
-                      labelText: 'Comments',
-                      suffixIcon: Icon(Icons.comment)),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                      color: Colors.red,
+                    )),
+                    labelText: 'Comments',
+                    suffixIcon: IconButton(
+                        icon: Icon(
+                          Icons.chevron_right,
+                        ),
+                        onPressed: () async {
+                          DateTime osdate = DateTime.now();
+
+                          await updateComment(
+                              comment, osdate, widget.postid.uemail);
+                        }),
+                  ),
                 ),
               ),
-            ),
-          );
+            ));
   }
 }
