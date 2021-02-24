@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:imd/models/imd.dart';
 import 'package:imd/global.dart' as global;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:imd/models/comments.dart';
 
 class EditHome extends StatefulWidget {
   final Imd postid;
@@ -20,11 +21,9 @@ class _EditHomeState extends State<EditHome> {
 
   String comment = '';
 
+  final collectionReference = Firestore.instance.collection('imd');
   Future updateComment(String comment, DateTime date, String uemail) async {
-    final databaseReference = Firestore.instance;
-
-    return await databaseReference
-        .collection('imd')
+    return await collectionReference
         .document(widget.postid.docId)
         .collection('comments')
         .document()
@@ -34,6 +33,24 @@ class _EditHomeState extends State<EditHome> {
       'date': date,
       /* 'docId': document Id here*/
     });
+  }
+
+  List<Comments> _commentFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return Comments(
+        comment: doc.data['comment'] ?? '',
+        uemail: doc.data['uemail'] ?? '',
+      );
+    }).toList();
+  }
+
+  Stream<List<Comments>> get stuff {
+    return collectionReference
+        .document(widget.postid.docId)
+        .collection('comments')
+        .orderBy('date', descending: true)
+        .snapshots()
+        .map(_commentFromSnapshot);
   }
 
   @override
@@ -142,11 +159,43 @@ class _EditHomeState extends State<EditHome> {
                     })
               ],
             ),
-            body: Container(
-              child: Center(
-                child: Text("YOLO"),
-              ),
-            ),
+            body: new StreamBuilder(
+                stream: Firestore.instance
+                    .collection("imd")
+                    .document(widget.postid.docId)
+                    .collection('comments')
+                    .orderBy('date', descending: false)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  return new ListView.builder(
+                      itemCount: snapshot.data.documents.length,
+                      itemBuilder: (context, index) {
+                        DocumentSnapshot ds = snapshot.data.documents[index];
+                        return Card(
+                          child: Container(
+                            color: Colors.white,
+                            height: 70,
+                            alignment: Alignment.centerLeft,
+                            padding: const EdgeInsets.all(10),
+                            width: double.infinity,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  ds['uemail']
+                                      .substring(0, ds['uemail'].indexOf("@")),
+                                  style: TextStyle(fontStyle: FontStyle.italic),
+                                ),
+                                SizedBox(height: 10),
+                                Text(
+                                  ds['comment'],
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+                }),
             bottomNavigationBar: Padding(
               padding: MediaQuery.of(context).viewInsets,
               child: Container(
@@ -169,10 +218,12 @@ class _EditHomeState extends State<EditHome> {
                           Icons.chevron_right,
                         ),
                         onPressed: () async {
+                          loading = true;
                           DateTime osdate = DateTime.now();
 
-                          await updateComment(
-                              comment, osdate, widget.postid.uemail);
+                          await updateComment(comment, osdate, global.uemail);
+
+                          Navigator.pop(context);
                         }),
                   ),
                 ),
