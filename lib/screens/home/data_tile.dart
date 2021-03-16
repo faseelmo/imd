@@ -1,8 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:imd/models/imd.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:imd/screens/Edit/editHome.dart';
+import 'package:imd/screens/Comments/CommentHome.dart';
 import 'package:imd/global.dart' as global;
 
 // ignore: must_be_immutable
@@ -13,26 +12,23 @@ class DataTile extends StatelessWidget {
 
   String uemail = "";
 
-  final databaseReference = Firestore.instance;
-
   @override
   Widget build(BuildContext context) {
-    print("LOOK HERE FOR GLOBAL EMAIL" +
-        global.uemail +
-        "\n data email is" +
-        data.uemail);
     if (global.uemail == data.uemail) {
-      print("THE PROPHECY IS TRUE YALL");
+      print("global.uemail == data.uemail");
     }
+
+    print("data.uemail is " + data.uemail);
+    print(data.group);
 
     return Padding(
       padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
       child: GestureDetector(
         onTap: () async {
-          /*This can be deleted in future I think */
-
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => EditHome(postid: data)));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CommentHome(postid: data)));
         },
         child: Card(
             margin: EdgeInsets.fromLTRB(20.0, 0, 20.0, 5),

@@ -16,12 +16,15 @@ class SearchServices {
     List<Imd> _imdListFromSnapshot(QuerySnapshot snapshot) {
       return snapshot.documents.map((doc) {
         return Imd(
-          area: doc.data['area'] ?? '',
-          group: doc.data['group'] ?? '',
-          equipment: doc.data['equipment'] ?? '',
-          activity: doc.data['activity'] ?? '',
-          optional: doc.data['optional'] ?? '',
-        );
+            area: doc.data['area'] ?? '',
+            group: doc.data['group'] ?? '',
+            equipment: doc.data['equipment'] ?? '',
+            activity: doc.data['activity'] ?? '',
+            optional: doc.data['optional'] ?? '',
+            url: doc.data['url'] ?? '',
+            uemail: doc.data['uemail'] ?? '',
+            docId: doc.data['docId'] ?? '',
+            date: doc.data['date'] ?? '');
       }).toList();
     }
 
@@ -45,9 +48,9 @@ class SearchServices {
         .where('group', isEqualTo: global.group)
         .where('equipment', isEqualTo: global.equipment)
         .where('activity', isEqualTo: global.activity)
-        .where('date', isGreaterThanOrEqualTo: global.fromDate)
-        .where('date', isLessThanOrEqualTo: global.toDate)
-        .orderBy('date', descending: true)
+        .where('osdate', isGreaterThanOrEqualTo: global.fromDate)
+        .where('osdate', isLessThanOrEqualTo: global.toDate)
+        .orderBy('osdate', descending: true)
         .snapshots()
         .map(_imdListFromSnapshot);
   }

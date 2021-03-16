@@ -57,7 +57,7 @@ class DatabaseService {
 
   Stream<List<Imd>> get imd {
     return collectionReference
-        .orderBy('date', descending: true)
+        .orderBy('osdate', descending: true)
         .snapshots()
         .map(_imdListFromSnapshot);
   }

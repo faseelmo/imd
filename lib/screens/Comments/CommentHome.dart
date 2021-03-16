@@ -8,15 +8,15 @@ import 'package:imd/global.dart' as global;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:imd/models/comments.dart';
 
-class EditHome extends StatefulWidget {
+class CommentHome extends StatefulWidget {
   final Imd postid;
-  EditHome({Key key, @required this.postid}) : super(key: key);
+  CommentHome({Key key, @required this.postid}) : super(key: key);
 
   @override
-  _EditHomeState createState() => _EditHomeState();
+  _CommentHomeState createState() => _CommentHomeState();
 }
 
-class _EditHomeState extends State<EditHome> {
+class _CommentHomeState extends State<CommentHome> {
   bool loading = false;
 
   String comment = '';
@@ -167,10 +167,12 @@ class _EditHomeState extends State<EditHome> {
                     .orderBy('date', descending: false)
                     .snapshots(),
                 builder: (context, snapshot) {
+                  if (snapshot.data == null) return Container();
                   return new ListView.builder(
                       itemCount: snapshot.data.documents.length,
                       itemBuilder: (context, index) {
                         DocumentSnapshot ds = snapshot.data.documents[index];
+
                         return Card(
                           child: Container(
                             color: Colors.white,
