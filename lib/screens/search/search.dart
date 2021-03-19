@@ -4,10 +4,6 @@ import 'searchHome.dart';
 import 'package:imd/global.dart' as global;
 import 'package:intl/intl.dart';
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:csv/csv.dart';
-import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -24,19 +20,6 @@ class _SearchState extends State<Search> {
   DateTime toDate;
   String fromDateString = '';
   String toDateString = '';
-
-  String filePath;
-
-  Future<String> get _localPath async {
-    final directory = await getApplicationSupportDirectory();
-    return directory.absolute.path;
-  }
-
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    filePath = '$path/data.csv';
-    return File('$path/data.csv').create();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -469,50 +452,7 @@ class _SearchState extends State<Search> {
                           "Export as Excel",
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () async {
-                          List<List<dynamic>> rows = List<List<dynamic>>();
-
-                          var cloud = await Firestore.instance
-                              .collection("imd")
-                              .document()
-                              .get();
-
-                          rows.add([
-                            "Name",
-                            "Gender",
-                            "Phone Number",
-                            "Email",
-                            "Age",
-                            "Area",
-                            "Assembly",
-                            "Meal Ticket"
-                          ]);
-
-                          if (cloud.data != null) {
-                            for (int i = 0;
-                                i < cloud.data["collected"].length;
-                                i++) {
-                              List<dynamic> row = List<dynamic>();
-                              row.add(cloud.data["collected"][i]["name"]);
-                              row.add(cloud.data["collected"][i]["gender"]);
-                              row.add(cloud.data["collected"][i]["phone"]);
-                              row.add(cloud.data["collected"][i]["email"]);
-                              row.add(
-                                  cloud.data["collected"][i]["age_bracket"]);
-                              row.add(cloud.data["collected"][i]["area"]);
-                              row.add(cloud.data["collected"][i]["assembly"]);
-                              row.add(
-                                  cloud.data["collected"][i]["meal_ticket"]);
-                              rows.add(row);
-                            }
-
-                            File f = await _localFile;
-
-                            String csv =
-                                const ListToCsvConverter().convert(rows);
-                            f.writeAsString(csv);
-                          }
-                        })
+                        onPressed: () async {})
                   ]),
                 ),
               ),

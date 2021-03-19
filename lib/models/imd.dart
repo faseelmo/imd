@@ -20,4 +20,17 @@ class Imd {
       this.uemail,
       this.docId,
       this.date});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'uemail': uemail,
+      'area': area,
+      'group': group,
+      'equipment': equipment,
+      'activity': activity,
+      'optional': optional,
+      'docId': docId,
+      'date': date
+    };
+  }
 }

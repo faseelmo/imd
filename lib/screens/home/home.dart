@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:imd/screens/exportcsv/csvhome.dart';
 import 'package:imd/screens/notanalytics/analyticsHome.dart';
 import 'package:imd/screens/search/search.dart';
 import 'package:imd/screens/home/listpage.dart';
@@ -61,8 +62,8 @@ class Home extends StatelessWidget {
               label: 'Search Database',
               labelStyle: TextStyle(fontSize: 18.0),
               onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Search()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CsvHome()));
               },
             ),
             SpeedDialChild(
