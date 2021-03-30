@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imd/screens/home/home.dart';
+import 'package:imd/screens/notice/notice.dart';
 import 'package:imd/screens/settings/account.dart';
 import 'package:imd/sevices/database.dart';
 import 'package:provider/provider.dart';
@@ -11,8 +12,9 @@ class Tabs extends StatefulWidget {
 }
 
 class _TabsState extends State<Tabs> {
-  int _currentIndex = 0;
+  int _currentIndex = 1;
   final tabs = [
+    Center(child: NoticeBoard()),
     Center(child: Home()),
     Center(child: Account()),
   ];
@@ -26,13 +28,17 @@ class _TabsState extends State<Tabs> {
           currentIndex: _currentIndex,
           items: [
             (BottomNavigationBarItem(
+              icon: Icon(Icons.collections_bookmark_outlined),
+              label: 'Notices',
+            )),
+            (BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
               label: 'Home',
             )),
             (BottomNavigationBarItem(
               icon: Icon(Icons.account_circle_outlined),
-              label: 'My Posts',
-            ))
+              label: 'Profile',
+            )),
           ],
           onTap: (index) {
             setState(() {
