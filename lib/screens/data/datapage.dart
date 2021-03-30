@@ -17,6 +17,7 @@ class DataPage extends StatefulWidget {
 }
 
 class _DataPageState extends State<DataPage> {
+  final _formKey = GlobalKey<FormState>();
   bool loading = false;
 
   String area = '';
@@ -101,6 +102,7 @@ class _DataPageState extends State<DataPage> {
               actions: <Widget>[],
             ),
             body: Form(
+              key: _formKey,
               child: SingleChildScrollView(
                 padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                 child: Column(children: <Widget>[
@@ -159,6 +161,8 @@ class _DataPageState extends State<DataPage> {
                     onChanged: (val) {
                       setState(() => area = val);
                     },
+                    validator: (value) =>
+                        value == null ? 'This field is Mandatory' : null,
                   ),
                   SizedBox(height: 10.0),
                   DropdownSearch<String>(
@@ -297,6 +301,8 @@ class _DataPageState extends State<DataPage> {
                     onChanged: (val) {
                       setState(() => group = val);
                     },
+                    validator: (value) =>
+                        value == null ? 'This field is Mandatory' : null,
                   ),
 
                   SizedBox(height: 10.0),
@@ -388,6 +394,8 @@ class _DataPageState extends State<DataPage> {
                       if (val == "Private") {}
                       setState(() => privacy = val);
                     },
+                    validator: (value) =>
+                        value == null ? 'This field is Mandatory' : null,
                   ),
                   SizedBox(height: 20.0),
                   RaisedButton(
@@ -397,38 +405,40 @@ class _DataPageState extends State<DataPage> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () async {
-                      setState(() => loading = true);
+                      if (_formKey.currentState.validate()) {
+                        setState(() => loading = true);
 
-                      if (_image != null) {
-                        await uploadFile();
-                        url = uploadedFileURL;
+                        if (_image != null) {
+                          await uploadFile();
+                          url = uploadedFileURL;
+                        }
+
+                        print("First");
+
+                        DateTime osdate = DateTime.now();
+                        date = DateFormat('dd-MM-yyyy HH:mm').format(osdate);
+
+                        await currentUser();
+                        print("After calling the function" + uemail);
+                        /*await getCurrentUser();*/
+
+                        print('Uemail is ');
+                        print(uemail);
+                        await DatabaseService().updateImd(
+                            area,
+                            group,
+                            equipment,
+                            activity,
+                            optional,
+                            osdate,
+                            url,
+                            uemail,
+                            date,
+                            privacy);
+
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Tabs()));
                       }
-
-                      print("First");
-
-                      DateTime osdate = DateTime.now();
-                      date = DateFormat('dd-MM-yyyy HH:mm').format(osdate);
-
-                      await currentUser();
-                      print("After calling the function" + uemail);
-                      /*await getCurrentUser();*/
-
-                      print('Uemail is ');
-                      print(uemail);
-                      await DatabaseService().updateImd(
-                          area,
-                          group,
-                          equipment,
-                          activity,
-                          optional,
-                          osdate,
-                          url,
-                          uemail,
-                          date,
-                          privacy);
-
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Tabs()));
                     },
                   ),
                 ]),

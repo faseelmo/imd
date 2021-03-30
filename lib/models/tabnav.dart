@@ -23,7 +23,7 @@ class TabNavigationItem {
         TabNavigationItem(
           page: Account(),
           icon: Icon(Icons.account_circle_outlined),
-          title: Text("Account"),
+          title: Text("My Post"),
         ),
       ];
 }

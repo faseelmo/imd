@@ -58,7 +58,7 @@ class Home extends StatelessWidget {
               },
             ),
             SpeedDialChild(
-              child: Icon(Icons.search),
+              child: Icon(Icons.download_sharp),
               backgroundColor: Colors.blueAccent,
               label: 'Search Database',
               labelStyle: TextStyle(fontSize: 18.0),
@@ -66,16 +66,6 @@ class Home extends StatelessWidget {
                 SignIn();
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CsvHome()));
-              },
-            ),
-            SpeedDialChild(
-              child: Icon(Icons.analytics),
-              backgroundColor: Colors.redAccent,
-              label: 'Analytics',
-              labelStyle: TextStyle(fontSize: 18.0),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => NotAnalytics()));
               },
             ),
           ],

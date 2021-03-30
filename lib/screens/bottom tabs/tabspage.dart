@@ -31,7 +31,7 @@ class _TabsState extends State<Tabs> {
             )),
             (BottomNavigationBarItem(
               icon: Icon(Icons.account_circle_outlined),
-              label: 'Account',
+              label: 'My Posts',
             ))
           ],
           onTap: (index) {
