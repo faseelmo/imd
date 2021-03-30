@@ -9,6 +9,7 @@ class Imd {
   final String uemail;
   final String docId;
   final String date;
+  final String privacy;
   Imd(
       {this.area,
       this.group,
@@ -19,7 +20,8 @@ class Imd {
       this.url,
       this.uemail,
       this.docId,
-      this.date});
+      this.date,
+      this.privacy});
 
   Map<String, dynamic> toMap() {
     return {

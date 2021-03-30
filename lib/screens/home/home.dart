@@ -8,6 +8,7 @@ import 'package:imd/sevices/database.dart';
 import 'package:provider/provider.dart';
 import 'package:imd/models/imd.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:imd/screens/authenticate/sign_in.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -62,6 +63,7 @@ class Home extends StatelessWidget {
               label: 'Search Database',
               labelStyle: TextStyle(fontSize: 18.0),
               onTap: () {
+                SignIn();
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CsvHome()));
               },

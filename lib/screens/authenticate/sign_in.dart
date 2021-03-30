@@ -108,7 +108,14 @@ class _SignInState extends State<SignIn> {
                                 await DatabaseService().getCurrentUser();
 
                             global.uemail = email;
+
+                            var security =
+                                await DatabaseService().getUserInfo();
+
+                            global.security = security.toString();
                             print("GLOBAL UEMAIL IS" + global.uemail);
+
+                            print('Security is $security');
                           }
                         }
                       },

@@ -27,6 +27,7 @@ class _DataPageState extends State<DataPage> {
   String url = '';
   String uemail = '';
   String date = '';
+  String privacy = '';
 
   String uploadedFileURL = '';
 
@@ -357,6 +358,37 @@ class _DataPageState extends State<DataPage> {
                           borderSide: BorderSide(color: Colors.blueGrey[300])),
                     ),
                   ),
+                  SizedBox(height: 10.0),
+                  DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      labelText: 'Privacy',
+                      labelStyle: TextStyle(
+                        color: Colors.blueGrey[900],
+                        //fontWeight: FontWeight.bold
+                      ),
+                      fillColor: Colors.grey[50],
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.grey[50], width: 2.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blueGrey[300])),
+                    ),
+                    items: <String>[
+                      'Public',
+                      'Private',
+                    ].map((String value) {
+                      return new DropdownMenuItem<String>(
+                        value: value,
+                        child: new Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (val) {
+                      if (val == "Private") {}
+                      setState(() => privacy = val);
+                    },
+                  ),
                   SizedBox(height: 20.0),
                   RaisedButton(
                     color: Colors.blueGrey[600],
@@ -383,8 +415,17 @@ class _DataPageState extends State<DataPage> {
 
                       print('Uemail is ');
                       print(uemail);
-                      await DatabaseService().updateImd(area, group, equipment,
-                          activity, optional, osdate, url, uemail, date);
+                      await DatabaseService().updateImd(
+                          area,
+                          group,
+                          equipment,
+                          activity,
+                          optional,
+                          osdate,
+                          url,
+                          uemail,
+                          date,
+                          privacy);
 
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Tabs()));

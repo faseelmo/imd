@@ -18,7 +18,8 @@ class DatabaseService {
       DateTime osdate,
       String url,
       String uemail,
-      String date) async {
+      String date,
+      String privacy) async {
     final databaseReference = collectionReference.document();
     return await databaseReference.setData({
       'area': area,
@@ -31,6 +32,7 @@ class DatabaseService {
       'uemail': uemail,
       'docId': databaseReference.documentID,
       'date': date,
+      'privacy': privacy
 
       /* 'docId': document Id here*/
     });
@@ -51,13 +53,15 @@ class DatabaseService {
           url: doc.data['url'] ?? '',
           uemail: doc.data['uemail'] ?? '',
           docId: doc.data['docId'] ?? '',
-          date: doc.data['date'] ?? '');
+          date: doc.data['date'] ?? '',
+          privacy: doc.data['privacy'] ?? '');
     }).toList();
   }
 
   Stream<List<Imd>> get imd {
     return collectionReference
         .orderBy('osdate', descending: true)
+        .where('privacy', isEqualTo: 'Public')
         .snapshots()
         .map(_imdListFromSnapshot);
   }
@@ -74,5 +78,14 @@ class DatabaseService {
     return user != null ? uemail : '';
 
     //print(uemail);
+  }
+
+  Future getUserInfo() async {
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    DocumentSnapshot security = await Firestore.instance
+        .collection('users')
+        .document(firebaseUser.uid)
+        .get();
+    return security.data['security'];
   }
 }
