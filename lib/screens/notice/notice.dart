@@ -36,17 +36,17 @@ class _NoticeBoardState extends State<NoticeBoard> {
                   DocumentSnapshot ds = snapshot.data.documents[index];
 
                   return Padding(
-                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                    padding: EdgeInsets.fromLTRB(10, 6, 10, 0),
                     child: Card(
-                      margin: EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+                      color: Colors.grey[900],
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.white70, width: 1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      //margin: EdgeInsets.all(20.0),
                       child: Container(
-                        color: Colors.blueGrey[900],
-                        height: 70,
-                        alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.all(10),
-                        width: double.infinity,
+                        margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
                               ds['title'],
