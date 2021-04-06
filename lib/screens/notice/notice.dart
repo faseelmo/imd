@@ -38,15 +38,16 @@ class _NoticeBoardState extends State<NoticeBoard> {
                   return Padding(
                     padding: EdgeInsets.fromLTRB(10, 6, 10, 0),
                     child: Card(
-                      color: Colors.grey[900],
+                      color: Colors.blueGrey[900],
                       shape: RoundedRectangleBorder(
                         side: BorderSide(color: Colors.white70, width: 1),
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(7),
                       ),
                       //margin: EdgeInsets.all(20.0),
                       child: Container(
-                        margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                        margin: EdgeInsets.fromLTRB(15, 15, 15, 20),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
                               ds['title'],
