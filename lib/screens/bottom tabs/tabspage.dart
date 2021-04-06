@@ -21,6 +21,7 @@ class _TabsState extends State<Tabs> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Imd>>.value(
+      initialData: null,
       value: DatabaseService().imd,
       child: Scaffold(
         body: tabs[_currentIndex],

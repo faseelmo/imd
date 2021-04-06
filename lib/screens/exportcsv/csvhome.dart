@@ -49,7 +49,7 @@ Future details() async {
   //List list2 = List.generate(list.length, (i) => List(8), growable: false);
   //List list2;
 
-  List<List<dynamic>> rows = List<List<dynamic>>();
+  List<List<dynamic>> rows = [];
   rows.add([
     "Employee",
     "Area",
@@ -62,7 +62,7 @@ Future details() async {
   ]);
 
   for (var i = 0; i < list.length; i++) {
-    List<dynamic> row = List<dynamic>();
+    List<dynamic> row = [];
     Map<String, dynamic> yolo = list[i].toMap();
     List values = yolo.values.toList();
     for (var j = 0; j < 8; j++) {
@@ -107,7 +107,7 @@ class _CsvHomeState extends State<CsvHome> {
           backgroundColor: Colors.white,
           elevation: 5.0,
         ),
-        resizeToAvoidBottomPadding: false,
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
@@ -132,11 +132,11 @@ class _CsvHomeState extends State<CsvHome> {
                                   SizedBox(
                                     height: 100,
                                   ),
-                                  RaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(2.0)),
-                                    elevation: 0,
+                                  ElevatedButton(
+                                    //shape: RoundedRectangleBorder(
+                                    //borderRadius:
+                                    //BorderRadius.circular(2.0)),
+                                    //elevation: 0,
                                     onPressed: () {
                                       showDatePicker(
                                               context: context,
@@ -195,12 +195,12 @@ class _CsvHomeState extends State<CsvHome> {
                                         ],
                                       ),
                                     ),
-                                    color: Colors.grey[50],
+                                    //color: Colors.grey[50],
                                   ),
                                 ]))),
                         SizedBox(height: 20.0),
-                        RaisedButton(
-                            color: Colors.blueGrey[600],
+                        ElevatedButton(
+                            //color: Colors.blueGrey[600],
                             child: Text(
                               "Export",
                               style: TextStyle(color: Colors.white),

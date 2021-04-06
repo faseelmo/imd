@@ -54,10 +54,10 @@ class _NotAnalyticsState extends State<NotAnalytics> {
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                              RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(2.0)),
-                                elevation: 0,
+                              ElevatedButton(
+                                //shape: RoundedRectangleBorder(
+                                //borderRadius: BorderRadius.circular(2.0)),
+                                //elevation: 0,
                                 onPressed: () {
                                   showDatePicker(
                                           context: context,
@@ -115,7 +115,7 @@ class _NotAnalyticsState extends State<NotAnalytics> {
                                     ],
                                   ),
                                 ),
-                                color: Colors.grey[50],
+                                //color: Colors.grey[50],
                               ),
                             ]))),
 
@@ -128,10 +128,10 @@ class _NotAnalyticsState extends State<NotAnalytics> {
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                              RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(2.0)),
-                                elevation: 0,
+                              ElevatedButton(
+                                //: RoundedRectangleBorder(
+                                //borderRadius: BorderRadius.circular(2.0)),
+                                //elevation: 0,
                                 onPressed: () {
                                   showDatePicker(
                                           context: context,
@@ -190,17 +190,17 @@ class _NotAnalyticsState extends State<NotAnalytics> {
                                     ],
                                   ),
                                 ),
-                                color: Colors.grey[50],
+                                //color: Colors.grey[50],
                               ),
                             ]))),
-                    RaisedButton(
-                        color: Colors.blueGrey[600],
+                    ElevatedButton(
+                        //color: Colors.blueGrey[600],
                         child: Text(
                           "Export as Excel",
                           style: TextStyle(color: Colors.white),
                         ),
                         onPressed: () async {
-                          List<List<dynamic>> rows = List<List<dynamic>>();
+                          List<List<dynamic>> rows = [];
 
                           var cloud = await Firestore.instance
                               .collection("datum")
@@ -222,7 +222,7 @@ class _NotAnalyticsState extends State<NotAnalytics> {
                             for (int i = 0;
                                 i < cloud.data["collected"].length;
                                 i++) {
-                              List<dynamic> row = List<dynamic>();
+                              List<dynamic> row = [];
                               row.add(cloud.data["collected"][i]["name"]);
                               row.add(cloud.data["collected"][i]["gender"]);
                               row.add(cloud.data["collected"][i]["phone"]);

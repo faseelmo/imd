@@ -108,7 +108,7 @@ class _DataPageState extends State<DataPage> {
                 child: Column(children: <Widget>[
                   //
                   // Image Picker
-                  RaisedButton(
+                  ElevatedButton(
                       child: Text('Choose Image'),
                       onPressed: () async {
                         await getImage();
@@ -398,8 +398,7 @@ class _DataPageState extends State<DataPage> {
                         value == null ? 'This field is Mandatory' : null,
                   ),
                   SizedBox(height: 20.0),
-                  RaisedButton(
-                    color: Colors.blueGrey[600],
+                  ElevatedButton(
                     child: Text(
                       "Submit",
                       style: TextStyle(color: Colors.white),

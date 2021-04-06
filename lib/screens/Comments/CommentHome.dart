@@ -58,7 +58,7 @@ class _CommentHomeState extends State<CommentHome> {
     return loading
         ? Loading()
         : Scaffold(
-            resizeToAvoidBottomPadding: false,
+            resizeToAvoidBottomInset: false,
             backgroundColor: Colors.white,
             appBar: AppBar(
               iconTheme: IconThemeData(color: Colors.black),
@@ -207,7 +207,7 @@ class _CommentHomeState extends State<CommentHome> {
                     setState(() => comment = val);
                     print("comment is " + comment);
                   },
-                  cursorColor: Theme.of(context).cursorColor,
+                  //cursorColor: Theme.of(context).cursorColor,
                   obscureText: false,
                   decoration: InputDecoration(
                     enabledBorder: UnderlineInputBorder(

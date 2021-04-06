@@ -12,6 +12,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Imd>>.value(
+      initialData: null,
       value: DatabaseService().imd,
       child: Scaffold(
         backgroundColor: Colors.grey[50],

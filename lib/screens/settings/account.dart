@@ -22,6 +22,7 @@ class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Imd>>.value(
+        initialData: null,
         value: AccountServices().imd,
         child: SingleChildScrollView(
           child: Column(
@@ -47,7 +48,7 @@ class _AccountState extends State<Account> {
                     ),
                     Container(
                       alignment: Alignment.center,
-                      child: FlatButton.icon(
+                      child: TextButton.icon(
                           onPressed: () async {
                             await _auth.signOut();
                           },

@@ -8,6 +8,7 @@ class SearchHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Imd>>.value(
+      initialData: null,
       value: SearchServices().imd,
       child: Scaffold(
         backgroundColor: Colors.grey[50],

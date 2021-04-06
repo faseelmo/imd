@@ -24,7 +24,7 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
-            resizeToAvoidBottomPadding: false,
+            resizeToAvoidBottomInset: false,
             backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -86,8 +86,7 @@ class _SignInState extends State<SignIn> {
                       },
                     ),
                     SizedBox(height: 40.0),
-                    RaisedButton(
-                      color: Colors.blueGrey[600],
+                    ElevatedButton(
                       child: Text(
                         "Sign in",
                         style: TextStyle(color: Colors.white),

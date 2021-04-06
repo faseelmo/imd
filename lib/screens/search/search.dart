@@ -24,7 +24,7 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomPadding: false,
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.black),
@@ -53,10 +53,10 @@ class _SearchState extends State<Search> {
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                              RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(2.0)),
-                                elevation: 0,
+                              ElevatedButton(
+                                //shape: RoundedRectangleBorder(
+                                //borderRadius: BorderRadius.circular(2.0)),
+                                //elevation: 0,
                                 onPressed: () {
                                   showDatePicker(
                                           context: context,
@@ -114,7 +114,7 @@ class _SearchState extends State<Search> {
                                     ],
                                   ),
                                 ),
-                                color: Colors.grey[50],
+                                //color: Colors.grey[50],
                               ),
                             ]))),
 
@@ -129,10 +129,10 @@ class _SearchState extends State<Search> {
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                              RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(2.0)),
-                                elevation: 0,
+                              ElevatedButton(
+                                //shape: RoundedRectangleBorder(
+                                //borderRadius: BorderRadius.circular(2.0)),
+                                //elevation: 0,
                                 onPressed: () {
                                   showDatePicker(
                                           context: context,
@@ -191,7 +191,7 @@ class _SearchState extends State<Search> {
                                     ],
                                   ),
                                 ),
-                                color: Colors.grey[50],
+                                //color: Colors.grey[50],
                               ),
                             ]))),
 
@@ -420,8 +420,8 @@ class _SearchState extends State<Search> {
                       },
                     ),
                     SizedBox(height: 20.0),
-                    RaisedButton(
-                        color: Colors.blueGrey[600],
+                    ElevatedButton(
+                        //color: Colors.blueGrey[600],
                         child: Text(
                           "Submit",
                           style: TextStyle(color: Colors.white),
@@ -446,8 +446,8 @@ class _SearchState extends State<Search> {
 
                         ),
 
-                    RaisedButton(
-                        color: Colors.blueGrey[600],
+                    ElevatedButton(
+                        //color: Colors.blueGrey[600],
                         child: Text(
                           "Export as Excel",
                           style: TextStyle(color: Colors.white),
