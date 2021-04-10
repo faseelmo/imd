@@ -29,7 +29,7 @@ class _AccountState extends State<Account> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                height: 200,
+                height: 150,
                 color: Colors.blueGrey[50],
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,10 +39,10 @@ class _AccountState extends State<Account> {
                       margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                       child: CircleAvatar(
                         backgroundColor: Colors.blueGrey,
-                        radius: 50,
+                        radius: 40,
                         child: Text(
                           global.uemail.substring(0, 2).toUpperCase(),
-                          style: TextStyle(fontSize: 50, color: Colors.white),
+                          style: TextStyle(fontSize: 30, color: Colors.white),
                         ), //Text
                       ), //CirlceAvatar
                     ),
@@ -57,6 +57,11 @@ class _AccountState extends State<Account> {
                     )
                   ],
                 ),
+              ),
+              Container(
+                color: Colors.grey,
+                height: MediaQuery.of(context).size.height / 150,
+                width: MediaQuery.of(context).size.width,
               ),
               Container(
                 height: 520,

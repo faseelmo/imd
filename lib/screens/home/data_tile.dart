@@ -31,46 +31,28 @@ class DataTile extends StatelessWidget {
                   builder: (context) => CommentHome(postid: data)));
         },
         child: Card(
+            elevation: 2,
             margin: EdgeInsets.fromLTRB(20.0, 0, 20.0, 5),
             child: Column(
               children: [
-                global.uemail == data.uemail
-                    ? Container(
-                        color: Colors.blueGrey[100],
-                        height: 40,
-                        alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.all(10),
-                        width: double.infinity,
-                        child: Text.rich(TextSpan(children: <TextSpan>[
-                          TextSpan(
-                              text: data.uemail
-                                  .substring(0, data.uemail.indexOf("@")),
-                              style: TextStyle(
-                                  fontStyle: FontStyle.italic,
-                                  color: Colors.black87)),
-                          TextSpan(
-                              text: '',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                        ])),
-                      )
-                    : Container(
-                        color: Colors.white,
-                        height: 40,
-                        alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.all(10),
-                        width: double.infinity,
-                        child: Text.rich(TextSpan(children: <TextSpan>[
-                          TextSpan(
-                              text: data.uemail
-                                  .substring(0, data.uemail.indexOf("@")),
-                              style: TextStyle(
-                                  fontStyle: FontStyle.italic,
-                                  color: Colors.black87)),
-                          TextSpan(
-                              text: '',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                        ])),
-                      ),
+                Container(
+                  color: Colors.white,
+                  height: 40,
+                  alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.all(10),
+                  width: double.infinity,
+                  child: Text.rich(TextSpan(children: <TextSpan>[
+                    TextSpan(
+                        text:
+                            data.uemail.substring(0, data.uemail.indexOf("@")),
+                        style: TextStyle(
+                            fontStyle: FontStyle.italic,
+                            color: Colors.black87)),
+                    TextSpan(
+                        text: '',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  ])),
+                ),
                 data.url != ''
                     ? CachedNetworkImage(
                         imageUrl: data.url,
