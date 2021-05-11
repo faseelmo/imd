@@ -17,7 +17,10 @@ class Home extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.grey[50],
         appBar: AppBar(
-          title: Text(''),
+          title: Text(
+            'Feed',
+            style: TextStyle(color: Colors.grey[900]),
+          ),
           backgroundColor: Colors.grey[50],
           elevation: 0.0,
         ),
@@ -41,8 +44,8 @@ class Home extends StatelessWidget {
           //onClose: () => print('DIAL CLOSED'),
           tooltip: 'Speed Dial',
           heroTag: 'speed-dial-hero-tag',
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
+          backgroundColor: Colors.indigo[900],
+          foregroundColor: Colors.white,
           elevation: 8.0,
           shape: CircleBorder(),
           children: [

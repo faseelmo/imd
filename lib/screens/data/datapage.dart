@@ -10,6 +10,7 @@ import 'dart:io';
 import 'package:path/path.dart' as Path;
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:intl/intl.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DataPage extends StatefulWidget {
   @override
@@ -27,6 +28,7 @@ class _DataPageState extends State<DataPage> {
   String optional = '';
   String url = '';
   String uemail = '';
+  String uid = '';
   String date = '';
   String privacy = '';
 
@@ -35,26 +37,22 @@ class _DataPageState extends State<DataPage> {
   File _image;
   final picker = ImagePicker();
 
-  Future currentUser() async {
+  /*Future currentUser() async {
     uemail = await DatabaseService().getCurrentUser();
-  }
+  } */
 
-  /*
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
- 
-  Future getCurrentUser() async {
+  Future currentUser() async {
     final FirebaseUser user = await _auth.currentUser();
-    //final uid = user.uid;
+
     // Similarly we can get email as well
 
     setState(() {
-      /*uemail = user.email;*/
+      uemail = user.email;
+      uid = user.uid;
     });
-
-    //print(uemail);
   }
-  */
 
   Future getImage() async {
     final pickedFile =
@@ -420,6 +418,14 @@ class _DataPageState extends State<DataPage> {
                         await currentUser();
                         print("After calling the function" + uemail);
                         /*await getCurrentUser();*/
+                        print("UID IS " + uid);
+
+                        if (privacy == 'Public') {
+                          Firestore.instance
+                              .collection('users')
+                              .document(uid)
+                              .updateData({"count": FieldValue.increment(1)});
+                        }
 
                         print('Uemail is ');
                         print(uemail);

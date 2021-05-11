@@ -7,6 +7,7 @@ import 'package:imd/models/imd.dart';
 import 'package:imd/global.dart' as global;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:imd/models/comments.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CommentHome extends StatefulWidget {
   final Imd postid;
@@ -20,6 +21,21 @@ class _CommentHomeState extends State<CommentHome> {
   bool loading = false;
 
   String comment = '';
+  String uemail = '';
+  String uid = '';
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future currentUser() async {
+    final FirebaseUser user = await _auth.currentUser();
+
+    // Similarly we can get email as well
+
+    setState(() {
+      uemail = user.email;
+      uid = user.uid;
+    });
+  }
 
   final collectionReference = Firestore.instance.collection('imd');
   Future updateComment(String comment, DateTime date, String uemail) async {
@@ -63,7 +79,7 @@ class _CommentHomeState extends State<CommentHome> {
             appBar: AppBar(
               iconTheme: IconThemeData(color: Colors.black),
               title: Text(
-                'Edit Screen',
+                'Comment Section',
                 style: TextStyle(color: Colors.black),
               ),
               backgroundColor: Colors.white,
@@ -109,6 +125,15 @@ class _CommentHomeState extends State<CommentHome> {
                                         await DatabaseService()
                                             .deletePost(widget.postid.docId);
                                       }
+
+                                      await currentUser();
+
+                                      Firestore.instance
+                                          .collection('users')
+                                          .document(uid)
+                                          .updateData({
+                                        "count": FieldValue.increment(-1)
+                                      });
 
                                       Navigator.push(
                                           context,

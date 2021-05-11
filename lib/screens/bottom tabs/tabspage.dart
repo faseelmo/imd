@@ -34,11 +34,11 @@ class _TabsState extends State<Tabs> {
             )),
             (BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
-              label: 'Home',
+              label: 'Feed',
             )),
             (BottomNavigationBarItem(
               icon: Icon(Icons.account_circle_outlined),
-              label: 'Profile',
+              label: 'You',
             )),
           ],
           onTap: (index) {

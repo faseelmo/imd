@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:imd/screens/settings/accountlistpage.dart';
 import 'package:imd/screens/settings/accountservice.dart';
+import 'package:imd/screens/settings/myprofile.dart';
 import 'package:imd/sevices/auth.dart';
 import 'package:imd/models/imd.dart';
 import 'package:imd/global.dart' as global;
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 import 'package:provider/provider.dart';
 
@@ -24,52 +26,25 @@ class _AccountState extends State<Account> {
     return StreamProvider<List<Imd>>.value(
         initialData: null,
         value: AccountServices().imd,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                height: 150,
-                color: Colors.blueGrey[50],
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.blueGrey,
-                        radius: 40,
-                        child: Text(
-                          global.uemail.substring(0, 2).toUpperCase(),
-                          style: TextStyle(fontSize: 30, color: Colors.white),
-                        ), //Text
-                      ), //CirlceAvatar
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      child: TextButton.icon(
-                          onPressed: () async {
-                            await _auth.signOut();
-                          },
-                          icon: Icon(Icons.logout),
-                          label: Text('logout')),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                color: Colors.grey,
-                height: MediaQuery.of(context).size.height / 150,
-                width: MediaQuery.of(context).size.width,
-              ),
-              Container(
-                height: 520,
-                child: Scaffold(
-                  body: Accountlistpage(),
-                ),
-              ),
-            ],
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(
+              'You',
+              style: TextStyle(color: Colors.grey[900]),
+            ),
+            backgroundColor: Colors.grey[50],
+            elevation: 0.0,
+          ),
+          body: Accountlistpage(),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.indigo[900],
+            foregroundColor: Colors.black,
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Myprofile()));
+              // Respond to button press
+            },
+            child: Icon(Icons.settings_outlined, color: Colors.white),
           ),
         ));
   }

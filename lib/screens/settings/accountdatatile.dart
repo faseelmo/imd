@@ -26,7 +26,7 @@ class Accountdatatile extends StatelessWidget {
     }
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+      padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
       child: GestureDetector(
         onTap: () async {
           /*This can be deleted in future I think */
