@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:imd/global.dart' as global;
 import 'package:imd/sevices/auth.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Myprofile extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -17,10 +19,12 @@ class Myprofile extends StatelessWidget {
         elevation: 5.0,
         actions: <Widget>[],
       ),
-      body: SingleChildScrollView(
-          child: Column(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         //crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
+        children: <Widget>[
           Card(
             elevation: 3,
             margin: EdgeInsets.fromLTRB(10.0, 15, 10.0, 10),
@@ -51,7 +55,7 @@ class Myprofile extends StatelessWidget {
                         await _auth.signOut();
                       },
                       icon: Icon(Icons.logout, color: Colors.indigo[900]),
-                      label: Text('logout',
+                      label: Text('Log out',
                           style: TextStyle(
                             color: Colors.indigo[900],
                           ))),
@@ -59,8 +63,77 @@ class Myprofile extends StatelessWidget {
               ],
             ),
           ),
+          Container(
+            //elevation: 3,
+            margin: EdgeInsets.fromLTRB(10.0, 15, 10.0, 10),
+            color: Colors.grey[00],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  //color: Colors.black,
+                  child: TextButton.icon(
+                    icon: Icon(
+                      Icons.bug_report_outlined,
+                      color: Colors.blueGrey,
+                    ),
+                    label: Text('Report Bug',
+                        style: TextStyle(
+                          color: Colors.indigo[900],
+                        )),
+                    onPressed: () async {
+                      final Email email = Email(
+                        body: '',
+                        subject: 'Bug / New Feature Report',
+                        recipients: ['imd.cgpl@gmail.com'],
+                        //cc: ['cc@example.com'],
+                        //bcc: ['bcc@example.com'],
+                        //attachmentPaths: ['/path/to/attachment.zip'],
+                        isHTML: false,
+                      );
+                      await FlutterEmailSender.send(email);
+                    },
+                  ),
+                  //CirlceAvatar
+                ),
+                Container(
+                  //color: Colors.black,
+                  child: TextButton.icon(
+                    icon: Icon(
+                      Icons.code_outlined,
+                      color: Colors.blueGrey,
+                    ),
+                    label: Text('Source Code',
+                        style: TextStyle(
+                          color: Colors.indigo[900],
+                        )),
+                    onPressed: () async {
+                      const url = 'https://github.com/faseelmo/imd';
+                      if (await canLaunch(url)) {
+                        await launch(url);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    },
+                  ),
+                  //CirlceAvatar
+                ),
+
+                //CirlceAvatar
+              ],
+            ),
+          ),
+          Container(
+              margin: EdgeInsets.all(30),
+              child: Text(
+                'made with ❤️ from mundra',
+                style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.black),
+              ))
         ],
-      )),
+      ),
     );
   }
 }

@@ -5,8 +5,6 @@ import 'package:imd/screens/settings/accountservice.dart';
 import 'package:imd/screens/settings/myprofile.dart';
 import 'package:imd/sevices/auth.dart';
 import 'package:imd/models/imd.dart';
-import 'package:imd/global.dart' as global;
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 import 'package:provider/provider.dart';
 
