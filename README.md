@@ -1,6 +1,6 @@
 # Work Diary
 
-Work Diary is a content sharing APP made with Flutter & Firebase. It is tailored to the needs of Instrumentation Engineers in CGPL. 
+Work Diary is a content sharing app made with Flutter & Firebase. It is tailored to the needs of Instrumentation Engineers in CGPL. 
 All personal entries can also be exported as a CSV file. 
 
 - [View the App on Play Store](https://play.google.com/store/apps/details?id=com.cgpl.imd)
