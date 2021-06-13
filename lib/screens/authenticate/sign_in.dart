@@ -31,24 +31,17 @@ class _SignInState extends State<SignIn> {
                   Container(
                     padding: EdgeInsets.fromLTRB(20, 0, 0, 20),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          "WORK",
+                          "work diary.",
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               color: Colors.white,
-                              fontWeight: FontWeight.w900,
-                              fontSize: 70),
-                        ),
-                        Text(
-                          "DIARY.",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w900,
-                              fontSize: 70),
+                              fontWeight: FontWeight.w300,
+                              fontSize: 30),
                         ),
                       ],
                     ),
@@ -57,8 +50,8 @@ class _SignInState extends State<SignIn> {
                     decoration: BoxDecoration(
                         color: Colors.blueGrey[800],
                         borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
+                          bottomLeft: Radius.circular(25),
+                          bottomRight: Radius.circular(25),
                         )),
                   ),
                   Container(
@@ -127,7 +120,7 @@ class _SignInState extends State<SignIn> {
 
                                 if (result == null) {
                                   setState(() {
-                                    error = 'wrong credentials';
+                                    error = 'Invalid Email/Password';
                                     loading = false;
                                   });
                                 } else {
@@ -140,9 +133,6 @@ class _SignInState extends State<SignIn> {
                                       await DatabaseService().getUserInfo();
 
                                   global.security = security.toString();
-                                  print("GLOBAL UEMAIL IS" + global.uemail);
-
-                                  print('Security is $security');
                                 }
                               }
                             },

@@ -28,6 +28,7 @@ List<Imd> _imdListFromSnapshot(QuerySnapshot snapshot) {
         url: doc.data['url'] ?? '',
         uemail: doc.data['uemail'] ?? '',
         docId: doc.data['docId'] ?? '',
+        event: doc.data['event'] ?? '',
         date: doc.data['date'] ?? '');
   }).toList();
 }
@@ -58,34 +59,35 @@ Future details() async {
     "Activity",
     "Description",
     "Unique ID",
-    "Date"
+    "date",
+    "URL",
+    "Event"
   ]);
 
   for (var i = 0; i < list.length; i++) {
     List<dynamic> row = [];
     Map<String, dynamic> yolo = list[i].toMap();
     List values = yolo.values.toList();
-    for (var j = 0; j < 8; j++) {
+    for (var j = 0; j < 10; j++) {
       row.add(values[j]);
     }
     rows.add(row);
   }
 
-  print("Printing Rows");
+  //print("Printing Rows");
   //print(rows);
 
   String csv = const ListToCsvConverter().convert(rows);
-  print("Printing csv");
-  print(csv);
+  //print(csv);
   final directory = ExtStorage.getExternalStoragePublicDirectory(
       ExtStorage.DIRECTORY_DOWNLOADS);
   Map<PermissionGroup, PermissionStatus> permissions =
       await PermissionHandler().requestPermissions([PermissionGroup.storage]);
   PermissionStatus permission =
       await PermissionHandler().checkPermissionStatus(PermissionGroup.storage);
-  print("permission is $permission");
-  final pathOfTheFileToWrite = await directory + "/CsvFile.csv";
-  print("directory is $pathOfTheFileToWrite");
+  //print("permission is $permission");
+  final pathOfTheFileToWrite = await directory + "/WorkDiaryExport.csv";
+  //print("directory is $pathOfTheFileToWrite");
   File file = File(pathOfTheFileToWrite);
   file.writeAsString(csv);
 }
@@ -214,8 +216,6 @@ class _CsvHomeState extends State<CsvHome> {
                               }
                               //print(details());
                               await details();
-                              print("Faseel look here for Global Security");
-                              print(global.security);
                               Navigator.pop(context);
                               showDialog(
                                   context: context,

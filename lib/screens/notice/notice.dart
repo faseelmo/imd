@@ -83,6 +83,56 @@ class _NoticeBoardState extends State<NoticeBoard> {
                         });
                   }),
             ),
+
+            Flexible(
+              flex: 1,
+              fit: FlexFit.loose,
+              child: new StreamBuilder(
+                  stream: Firestore.instance.collection("events").snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.data == null) return Container();
+                    return new ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.documents.length,
+                        itemBuilder: (context, index) {
+                          DocumentSnapshot ds = snapshot.data.documents[index];
+
+                          return Card(
+                            margin: EdgeInsets.fromLTRB(15.0, 5, 15.0, 5),
+                            color: Colors.red[900],
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(color: Colors.white70, width: 1),
+                              borderRadius: BorderRadius.circular(7),
+                            ),
+                            //margin: EdgeInsets.all(20.0),
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(15, 15, 15, 20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    ds['name'],
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Text(
+                                      "Total Job Done " +
+                                          ds['total'].toString(),
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      )),
+                                ],
+                              ),
+                            ),
+                          );
+                        });
+                  }),
+            ),
+
+            //START POSTER
             Flexible(
                 flex: 1,
                 fit: FlexFit.loose,

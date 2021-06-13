@@ -25,8 +25,8 @@ class Myprofile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         //crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Card(
-            elevation: 3,
+          Container(
+            //elevation: 0,
             margin: EdgeInsets.fromLTRB(10.0, 15, 10.0, 10),
             color: Colors.grey[00],
             child: Column(
@@ -47,56 +47,33 @@ class Myprofile extends StatelessWidget {
                     ), //Text
                   ), //CirlceAvatar
                 ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
-                  alignment: Alignment.center,
-                  child: TextButton.icon(
-                      onPressed: () async {
-                        await _auth.signOut();
-                      },
-                      icon: Icon(Icons.logout, color: Colors.indigo[900]),
-                      label: Text('Log out',
-                          style: TextStyle(
-                            color: Colors.indigo[900],
-                          ))),
-                )
               ],
             ),
           ),
           Container(
+            alignment: Alignment.center,
             //elevation: 3,
             margin: EdgeInsets.fromLTRB(10.0, 15, 10.0, 10),
-            color: Colors.grey[00],
-            child: Row(
+            //color: Colors.grey[00],
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
-                  //color: Colors.black,
+                  //margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+                  //alignment: Alignment.center,
                   child: TextButton.icon(
-                    icon: Icon(
-                      Icons.bug_report_outlined,
-                      color: Colors.blueGrey,
-                    ),
-                    label: Text('Report Bug',
-                        style: TextStyle(
-                          color: Colors.indigo[900],
-                        )),
-                    onPressed: () async {
-                      final Email email = Email(
-                        body: '',
-                        subject: 'Bug / New Feature Report',
-                        recipients: ['imd.cgpl@gmail.com'],
-                        //cc: ['cc@example.com'],
-                        //bcc: ['bcc@example.com'],
-                        //attachmentPaths: ['/path/to/attachment.zip'],
-                        isHTML: false,
-                      );
-                      await FlutterEmailSender.send(email);
-                    },
-                  ),
-                  //CirlceAvatar
+                      onPressed: () async {
+                        await _auth.signOut();
+                      },
+                      icon: Icon(Icons.logout, color: Colors.blueGrey),
+                      label: Text('Log Out',
+                          style: TextStyle(
+                            color: Colors.indigo[900],
+                          ))),
                 ),
+
                 Container(
+                  alignment: Alignment.center,
                   //color: Colors.black,
                   child: TextButton.icon(
                     icon: Icon(
@@ -119,6 +96,34 @@ class Myprofile extends StatelessWidget {
                   //CirlceAvatar
                 ),
 
+                Container(
+                  alignment: Alignment.center,
+                  //color: Colors.black,
+                  child: TextButton.icon(
+                    icon: Icon(
+                      Icons.bug_report_outlined,
+                      color: Colors.blueGrey,
+                    ),
+                    label: Text('Report a Bug',
+                        style: TextStyle(
+                          color: Colors.indigo[900],
+                        )),
+                    onPressed: () async {
+                      final Email email = Email(
+                        body: '',
+                        subject: 'Bug / New Feature Report',
+                        recipients: ['imd.cgpl@gmail.com'],
+                        //cc: ['cc@example.com'],
+                        //bcc: ['bcc@example.com'],
+                        //attachmentPaths: ['/path/to/attachment.zip'],
+                        isHTML: false,
+                      );
+                      await FlutterEmailSender.send(email);
+                    },
+                  ),
+                  //CirlceAvatar
+                ),
+
                 //CirlceAvatar
               ],
             ),
@@ -126,7 +131,7 @@ class Myprofile extends StatelessWidget {
           Container(
               margin: EdgeInsets.all(30),
               child: Text(
-                'made with ❤️ from mundra',
+                'made with ❤️ in  mundra',
                 style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w300,

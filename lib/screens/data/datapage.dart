@@ -31,6 +31,7 @@ class _DataPageState extends State<DataPage> {
   String uid = '';
   String date = '';
   String privacy = '';
+  String event = '';
 
   String uploadedFileURL = '';
 
@@ -61,11 +62,6 @@ class _DataPageState extends State<DataPage> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
-        print(
-            'LOOK HERE LOL \n IMAGE SELECTED LLOL  \n \n \n \n FASEEL LOOK HERE.');
-      } else {
-        print(
-            'LOOK HERE LOL \n No image selected \n \n \n \n FASEEL LOOK HERE.');
       }
     });
   }
@@ -125,6 +121,45 @@ class _DataPageState extends State<DataPage> {
                     child: Text(uemail),
                   ),
 
+                  StreamBuilder<QuerySnapshot>(
+                    stream:
+                        Firestore.instance.collection('newevent').snapshots(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (!snapshot.hasData) return const Text('Loading...');
+                      return new DropdownButtonFormField<String>(
+                        decoration: InputDecoration(
+                          labelText: 'Event',
+                          labelStyle: TextStyle(
+                            color: Colors.blueGrey[900],
+                            //fontWeight: FontWeight.bold
+                          ),
+                          fillColor: Colors.grey[50],
+                          filled: true,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey[50], width: 2.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.blueGrey[300])),
+                        ),
+                        items: snapshot.data.documents
+                            .map((DocumentSnapshot document) {
+                          return new DropdownMenuItem<String>(
+                            value: document.data['name'],
+                            child: new Text(
+                              document.data['name'],
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (val) {
+                          setState(() => event = val);
+                        },
+                      );
+                    },
+                  ),
+
                   SizedBox(height: 20.0),
                   DropdownButtonFormField<String>(
                     decoration: InputDecoration(
@@ -162,6 +197,7 @@ class _DataPageState extends State<DataPage> {
                     validator: (value) =>
                         value == null ? 'This field is Mandatory' : null,
                   ),
+
                   SizedBox(height: 10.0),
                   DropdownSearch<String>(
                     dropdownSearchDecoration: InputDecoration(
@@ -195,6 +231,7 @@ class _DataPageState extends State<DataPage> {
                     mode: Mode.MENU,
                     showSelectedItem: true,
                     items: [
+                      'Others',
                       'TSI',
                       'MSV',
                       'CV',
@@ -321,6 +358,7 @@ class _DataPageState extends State<DataPage> {
                           borderSide: BorderSide(color: Colors.blueGrey[300])),
                     ),
                     items: <String>[
+                      'Others',
                       'Simulation',
                       'Replacement',
                       'Set Point Change',
@@ -328,7 +366,7 @@ class _DataPageState extends State<DataPage> {
                       'Calibration',
                       'Improvement',
                       'New Installation',
-                      'Others'
+                      'Defect'
                     ].map((String value) {
                       return new DropdownMenuItem<String>(
                         value: value,
@@ -410,15 +448,10 @@ class _DataPageState extends State<DataPage> {
                           url = uploadedFileURL;
                         }
 
-                        print("First");
-
                         DateTime osdate = DateTime.now();
                         date = DateFormat('dd-MM-yyyy HH:mm').format(osdate);
 
                         await currentUser();
-                        print("After calling the function" + uemail);
-                        /*await getCurrentUser();*/
-                        print("UID IS " + uid);
 
                         if (privacy == 'Public') {
                           Firestore.instance
@@ -427,19 +460,32 @@ class _DataPageState extends State<DataPage> {
                               .updateData({"count": FieldValue.increment(1)});
                         }
 
-                        print('Uemail is ');
-                        print(uemail);
+                        if (privacy == 'Public' && event != '') {
+                          Firestore.instance
+                              .collection('events')
+                              .document(event)
+                              .setData({"total": FieldValue.increment(1)},
+                                  merge: true);
+
+                          Firestore.instance
+                              .collection('events')
+                              .document(event)
+                              .setData({"name": event}, merge: true);
+                        }
+
                         await DatabaseService().updateImd(
-                            area,
-                            group,
-                            equipment,
-                            activity,
-                            optional,
-                            osdate,
-                            url,
-                            uemail,
-                            date,
-                            privacy);
+                          area,
+                          group,
+                          equipment,
+                          activity,
+                          optional,
+                          osdate,
+                          url,
+                          uemail,
+                          date,
+                          privacy,
+                          event,
+                        );
 
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => Tabs()));

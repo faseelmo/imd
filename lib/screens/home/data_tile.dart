@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:imd/models/imd.dart';
 import 'package:imd/screens/Comments/CommentHome.dart';
-import 'package:imd/global.dart' as global;
 
 // ignore: must_be_immutable
 class DataTile extends StatelessWidget {
@@ -14,13 +13,6 @@ class DataTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (global.uemail == data.uemail) {
-      print("global.uemail == data.uemail");
-    }
-
-    print("data.uemail is " + data.uemail);
-    print(data.group);
-
     return Padding(
       padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
       child: GestureDetector(
@@ -31,11 +23,16 @@ class DataTile extends StatelessWidget {
                   builder: (context) => CommentHome(postid: data)));
         },
         child: Card(
+            clipBehavior: Clip.antiAlias,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25.0),
+            ),
             elevation: 2,
             margin: EdgeInsets.fromLTRB(20.0, 0, 20.0, 5),
             child: Column(
               children: [
                 Container(
+                  margin: EdgeInsets.fromLTRB(3, 3, 0, 3),
                   color: Colors.white,
                   height: 40,
                   alignment: Alignment.centerLeft,
@@ -46,7 +43,8 @@ class DataTile extends StatelessWidget {
                         text:
                             data.uemail.substring(0, data.uemail.indexOf("@")),
                         style: TextStyle(
-                            fontStyle: FontStyle.italic,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w300,
                             color: Colors.black87)),
                     TextSpan(
                         text: '',
@@ -55,6 +53,14 @@ class DataTile extends StatelessWidget {
                 ),
                 data.url != ''
                     ? CachedNetworkImage(
+                        imageBuilder: (context, imageProvider) => Container(
+                          width: 1000.0,
+                          height: 300.0,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: imageProvider, fit: BoxFit.cover),
+                          ),
+                        ),
                         imageUrl: data.url,
                         progressIndicatorBuilder:
                             (context, url, downloadProgress) =>
@@ -97,7 +103,7 @@ class DataTile extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
                     child: data.optional != ''
                         ? Padding(
                             padding: const EdgeInsets.fromLTRB(16.0, 4, 12, 5),

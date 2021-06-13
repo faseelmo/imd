@@ -17,14 +17,6 @@ class Accountdatatile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("LOOK HERE FOR GLOBAL EMAIL" +
-        global.uemail +
-        "\n data email is" +
-        data.uemail);
-    if (global.uemail == data.uemail) {
-      print("THE PROPHECY IS TRUE YALL");
-    }
-
     return Padding(
       padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
       child: GestureDetector(
@@ -49,7 +41,6 @@ class Accountdatatile extends StatelessWidget {
                         child: Text('Yes'),
                         onPressed: () async {
                           if (data.url != "") {
-                            print("DATA.URL HERE LOOK " + data.url);
                             FirebaseStorage.instance
                                 .getReferenceFromUrl(data.url)
                                 .then(

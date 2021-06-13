@@ -10,16 +10,18 @@ class DatabaseService {
   final collectionReference = Firestore.instance.collection('imd');
 
   Future updateImd(
-      String area,
-      String group,
-      String equipment,
-      String activity,
-      String optional,
-      DateTime osdate,
-      String url,
-      String uemail,
-      String date,
-      String privacy) async {
+    String area,
+    String group,
+    String equipment,
+    String activity,
+    String optional,
+    DateTime osdate,
+    String url,
+    String uemail,
+    String date,
+    String privacy,
+    String event,
+  ) async {
     final databaseReference = collectionReference.document();
     return await databaseReference.setData({
       'area': area,
@@ -32,8 +34,8 @@ class DatabaseService {
       'uemail': uemail,
       'docId': databaseReference.documentID,
       'date': date,
-      'privacy': privacy
-
+      'privacy': privacy,
+      'event': event,
       /* 'docId': document Id here*/
     });
   }
@@ -45,23 +47,25 @@ class DatabaseService {
   List<Imd> _imdListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return Imd(
-          area: doc.data['area'] ?? '',
-          group: doc.data['group'] ?? '',
-          equipment: doc.data['equipment'] ?? '',
-          activity: doc.data['activity'] ?? '',
-          optional: doc.data['optional'] ?? '',
-          url: doc.data['url'] ?? '',
-          uemail: doc.data['uemail'] ?? '',
-          docId: doc.data['docId'] ?? '',
-          date: doc.data['date'] ?? '',
-          privacy: doc.data['privacy'] ?? '');
+        area: doc.data['area'] ?? '',
+        group: doc.data['group'] ?? '',
+        equipment: doc.data['equipment'] ?? '',
+        activity: doc.data['activity'] ?? '',
+        optional: doc.data['optional'] ?? '',
+        url: doc.data['url'] ?? '',
+        uemail: doc.data['uemail'] ?? '',
+        docId: doc.data['docId'] ?? '',
+        date: doc.data['date'] ?? '',
+        privacy: doc.data['privacy'] ?? '',
+        event: doc.data['event'] ?? '',
+      );
     }).toList();
   }
 
   Stream<List<Imd>> get imd {
     return collectionReference
         .orderBy('osdate', descending: true)
-        .where('privacy', isEqualTo: 'Public')
+        .limit(20)
         .snapshots()
         .map(_imdListFromSnapshot);
   }
@@ -73,7 +77,6 @@ class DatabaseService {
     //final uid = user.uid;
     // Similarly we can get email as well
     String uemail = user.email;
-    print("Faseel Here look lol" + uemail);
 
     return user != null ? uemail : '';
 

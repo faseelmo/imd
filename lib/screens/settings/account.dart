@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:imd/screens/settings/accountlistpage.dart';
 import 'package:imd/screens/settings/accountservice.dart';
 import 'package:imd/screens/settings/myprofile.dart';
-import 'package:imd/sevices/auth.dart';
 import 'package:imd/models/imd.dart';
 
 import 'package:provider/provider.dart';
@@ -17,8 +16,6 @@ class Account extends StatefulWidget {
 }
 
 class _AccountState extends State<Account> {
-  final AuthService _auth = AuthService();
-
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Imd>>.value(

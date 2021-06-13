@@ -91,65 +91,79 @@ class _CommentHomeState extends State<CommentHome> {
                     ),
                     onPressed: () async {
                       if (global.uemail == widget.postid.uemail) {
-                        return showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('Delete'),
-                                content: SingleChildScrollView(
-                                  child: ListBody(
-                                    children: <Widget>[
-                                      Text(
-                                          'Are you sure you want to delete this post?'),
+                        return loading
+                            ? Loading()
+                            : showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text('Delete'),
+                                    content: SingleChildScrollView(
+                                      child: ListBody(
+                                        children: <Widget>[
+                                          Text(
+                                              'Are you sure you want to delete this post?'),
+                                        ],
+                                      ),
+                                    ),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        child: Text('Yes'),
+                                        onPressed: () async {
+                                          setState(() => loading = true);
+                                          if (widget.postid.url != "") {
+                                            FirebaseStorage.instance
+                                                .getReferenceFromUrl(
+                                                    widget.postid.url)
+                                                .then(
+                                                  (reference) =>
+                                                      reference.delete(),
+                                                )
+                                                .catchError((e) => print(e));
+                                          }
+
+                                          if (widget.postid.docId != "") {
+                                            await DatabaseService().deletePost(
+                                                widget.postid.docId);
+                                          }
+
+                                          await currentUser();
+
+                                          Firestore.instance
+                                              .collection('users')
+                                              .document(uid)
+                                              .updateData({
+                                            "count": FieldValue.increment(-1)
+                                          });
+
+                                          if (widget.postid.event != '' &&
+                                              widget.postid.privacy ==
+                                                  'Public') {
+                                            Firestore.instance
+                                                .collection('events')
+                                                .document(widget.postid.event
+                                                    .toString())
+                                                .setData({
+                                              "total": FieldValue.increment(-1)
+                                            }, merge: true);
+                                          }
+
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Tabs()));
+                                        },
+                                      ),
+                                      TextButton(
+                                        child: Text('No'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
                                     ],
-                                  ),
-                                ),
-                                actions: <Widget>[
-                                  TextButton(
-                                    child: Text('Yes'),
-                                    onPressed: () async {
-                                      setState(() => loading = true);
-                                      if (widget.postid.url != "") {
-                                        print("DATA.URL HERE LOOK " +
-                                            widget.postid.url);
-                                        FirebaseStorage.instance
-                                            .getReferenceFromUrl(
-                                                widget.postid.url)
-                                            .then(
-                                              (reference) => reference.delete(),
-                                            )
-                                            .catchError((e) => print(e));
-                                      }
-
-                                      if (widget.postid.docId != "") {
-                                        await DatabaseService()
-                                            .deletePost(widget.postid.docId);
-                                      }
-
-                                      await currentUser();
-
-                                      Firestore.instance
-                                          .collection('users')
-                                          .document(uid)
-                                          .updateData({
-                                        "count": FieldValue.increment(-1)
-                                      });
-
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => Tabs()));
-                                    },
-                                  ),
-                                  TextButton(
-                                    child: Text('No'),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                ],
-                              );
-                            });
+                                  );
+                                });
                       } else {
                         return showDialog(
                             context: context,
@@ -230,7 +244,6 @@ class _CommentHomeState extends State<CommentHome> {
                 child: TextField(
                   onChanged: (val) {
                     setState(() => comment = val);
-                    print("comment is " + comment);
                   },
                   //cursorColor: Theme.of(context).cursorColor,
                   obscureText: false,
